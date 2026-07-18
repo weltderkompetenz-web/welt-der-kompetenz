@@ -1,8 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* ==========================================================================
-       1. CONFIGURATION DU ROUTAGE MULTI-NUMÉROS WHATSAPP
-       ========================================================================== */
     const servicesRouting = {
         "allemand": "49157812140",
         "web": "2290158255572",
@@ -16,34 +13,25 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /* ==========================================================================
-       2. MOTEUR D'ANIMATION PERSPECTIVE 3D SUR LES CARDS
+       GESTION DE L'INCLINAISON ET ANIMATION 3D DES CARDS SERVICES
        ========================================================================== */
     const cards = document.querySelectorAll('.3d-card');
-    
     cards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
             const xc = rect.width / 2;
             const yc = rect.height / 2;
-            
-            // Calcul de l'angle d'inclinaison (max 15 degrés pour l'élégance UI)
-            const angleX = (yc - y) / 10;
-            const angleY = (x - xc) / 10;
-            
+            const angleX = (yc - y) / 12;
+            const angleY = (x - xc) / 12;
             card.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.02)`;
         });
-        
         card.addEventListener('mouseleave', () => {
             card.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
         });
     });
 
-    /* ==========================================================================
-       3. INTERRUPTEUR DE THÈME DE COULEURS (DARK / LIGHT)
-       ========================================================================== */
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
 
@@ -57,34 +45,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    /* ==========================================================================
-       4. LOGIQUE PARALLAXE FLUIDE SUR L'ARRIÈRE-PLAN
-       ========================================================================== */
     window.addEventListener('scroll', () => {
         const bg = document.getElementById('parallaxBg');
         let offset = window.pageYOffset;
-        bg.style.backgroundPositionY = `${offset * 0.35}px`;
+        bg.style.backgroundPositionY = `${offset * 0.4}px`;
     });
 
-    /* ==========================================================================
-       5. GESTION DU SCROLL REVEAL EFFICACE
-       ========================================================================== */
     const reveals = document.querySelectorAll('.reveal');
     function handleScrollReveal() {
-        const triggerBottom = window.innerHeight * 0.9;
+        const triggerBottom = window.innerHeight * 0.88;
         reveals.forEach(reveal => {
             const revealTop = reveal.getBoundingClientRect().top;
-            if (revealTop < triggerBottom) {
-                reveal.classList.add('active');
-            }
+            if (revealTop < triggerBottom) reveal.classList.add('active');
         });
     }
     window.addEventListener('scroll', handleScrollReveal);
     handleScrollReveal();
 
-    /* ==========================================================================
-       6. INTERACTION DE SÉLECTION DYNAMIQUE DE SERVICES
-       ========================================================================== */
     const orderButtons = document.querySelectorAll('.btn-order');
     const selectElement = document.getElementById('serviceSelect');
     const titleElement = document.getElementById('formTitle');
@@ -109,9 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    /* ==========================================================================
-       7. FILTRAGE DE L'ESPACE PORTFOLIO
-       ========================================================================== */
     const filterButtons = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
 
@@ -119,9 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', (e) => {
             filterButtons.forEach(btn => btn.classList.remove('active'));
             e.target.classList.add('active');
-
             const filterCriterion = e.target.getAttribute('data-filter');
-
             portfolioItems.forEach(item => {
                 const category = item.getAttribute('data-category');
                 if (filterCriterion === 'all' || category === filterCriterion) {
@@ -133,9 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* ==========================================================================
-       8. GESTION DES ENVOIS DE FORMULAIRES ET SÉCURISATION DES DONNÉES SENSIVLES
-       ========================================================================== */
     const orderForm = document.getElementById('orderForm');
     let currentRedirectUrl = "";
 
@@ -158,21 +127,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const description = sanitizeInput(document.getElementById('projectDesc').value.trim());
 
         if (serviceKey === 'general') {
-            alert("Veuillez sélectionner un pôle de compétences précis avant de poursuivre.");
+            alert("Veuillez sélectionner un service précis.");
             return;
         }
 
-        const messageTemplate = `*WELT DER KOMPETENZEN - UNIQUE COMMANDE*\n\n` +
-                                `• *Identité :* ${lastName} ${firstName}\n` +
-                                `• *Pôle :* ${serviceLabel}\n` +
-                                `• *WhatsApp :* ${whatsappNumber}\n` +
-                                `• *Enveloppe :* ${budget}\n` +
+        const messageTemplate = `*WELT DER KOMPETENZEN - NOUVELLE COMMANDE*\n\n` +
+                                `• *Client :* ${lastName} ${firstName}\n` +
+                                `• *Service :* ${serviceLabel}\n` +
+                                `• *Contact WhatsApp :* ${whatsappNumber}\n` +
+                                `• *Budget :* ${budget}\n` +
                                 `• *Urgence :* ${urgency}\n\n` +
-                                `*Spécifications techniques :*\n${description}`;
+                                `*Description du besoin :*\n${description}`;
 
         const encodedMessage = encodeURIComponent(messageTemplate);
         const destinationPhone = servicesRouting[serviceKey] || servicesRouting['general'];
-        
         currentRedirectUrl = `https://wa.me/${destinationPhone}?text=${encodedMessage}`;
 
         document.getElementById('successModal').classList.add('active');
@@ -187,4 +155,4 @@ document.addEventListener('DOMContentLoaded', () => {
             currentRedirectUrl = "";
         }
     };
-}); 
+});
