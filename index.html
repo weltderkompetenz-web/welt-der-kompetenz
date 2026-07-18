@@ -233,3 +233,395 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welt Der Kompetenzen - Expertises Multi-Services</title>
+    
+    <!-- Sécurité de base (Meta tags) -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Liens Externes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+
+    <!-- Fond Numérique Parallaxe -->
+    <div class="parallax-bg" id="parallaxBg"></div>
+
+    <!-- Barre de Navigation -->
+    <header>
+        <div class="logo">WELT DER KOMPETENZEN</div>
+        <nav>
+            <a href="#accueil">Accueil</a>
+            <a href="#services">Services</a>
+            <a href="#portfolio">Projets</a>
+            <a href="#commander">Commander</a>
+            <button id="themeToggle" class="theme-btn" aria-label="Changer de thème">
+                <i class="fas fa-sun"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Section Accueil -->
+    <section class="hero" id="accueil">
+        <div class="hero-content reveal">
+            <h1>Bienvenue dans la <br><span>Welt Der Kompetenzen</span></h1>
+            <p>Le carrefour d'élite combinant linguistique, ingénierie logicielle (SaaS, Web, Mobile), design stratégique et systèmes d'automatisations propulsés par l'Intelligence Artificielle.</p>
+            <a href="#services" class="btn btn-primary">Explorer nos pôles <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="hero-image reveal">
+            <div class="profile-img-wrapper">
+                <!-- METS TA PHOTO ICI -->
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80" alt="Emmanuel Clarius">
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Services -->
+    <section class="services" id="services">
+        <h2 class="section-title reveal">Nos <span>Pôles d'Expertise</span></h2>
+        
+        <div class="services-grid">
+            <!-- Pôle 1 -->
+            <div class="service-card reveal">
+                <div>
+                    <img class="service-img" src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=500&q=80" alt="Allemand">
+                    <h3>Professeur d'Allemand</h3>
+                    <p>Programmes intensifs du niveau A1 à C2 adaptés au cadre professionnel et académique européen.</p>
+                </div>
+                <div class="service-actions">
+                    <button class="btn btn-primary btn-order" data-service="allemand">Commander</button>
+                    <a href="https://wa.me/49157812140" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Direct</a>
+                </div>
+            </div>
+
+            <!-- Pôle 2 -->
+            <div class="service-card reveal">
+                <div>
+                    <img class="service-img" src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=500&q=80" alt="Web">
+                    <h3>Création de Site Web</h3>
+                    <p>Architectures Web modernes (Vitrines, E-commerce) centrées sur la vitesse et l'indexation SEO.</p>
+                </div>
+                <div class="service-actions">
+                    <button class="btn btn-primary btn-order" data-service="web">Commander</button>
+                    <a href="https://wa.me/2290158255572" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Dev</a>
+                </div>
+            </div>
+
+            <!-- Pôle 3 -->
+            <div class="service-card reveal">
+                <div>
+                    <img class="service-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=500&q=80" alt="SaaS">
+                    <h3>Création de SaaS</h3>
+                    <p>Conception d'applications Cloud scalables sous modèles d'abonnements récurrents sécurisés.</p>
+                </div>
+                <div class="service-actions">
+                    <button class="btn btn-primary btn-order" data-service="saas">Commander</button>
+                    <a href="https://wa.me/22996966297" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Ingé</a>
+                </div>
+            </div>
+
+            <!-- Pôle 4 -->
+            <div class="service-card reveal">
+                <div>
+                    <img class="service-img" src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=500&q=80" alt="UI/UX">
+                    <h3>Design UI / UX</h3>
+                    <p>Prototypes haute fidélité (Figma) et études de parcours utilisateurs orientés conversions.</p>
+                </div>
+                <div class="service-actions">
+                    <button class="btn btn-primary btn-order" data-service="ui-ux">Commander</button>
+                    <a href="https://wa.me/22955172503" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Design</a>
+                </div>
+            </div>
+
+            <!-- Pôle 5 -->
+            <div class="service-card reveal">
+                <div>
+                    <img class="service-img" src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=500&q=80" alt="TikTok">
+                    <h3>Compte TikTok Monétisable</h3>
+                    <p>Création de comptes configurés dans les zones éligibles avec stratégies algorithmiques clés en main.</p>
+                </div>
+                <div class="service-actions">
+                    <button class="btn btn-primary btn-order" data-service="tiktok">Commander</button>
+                    <a href="https://wa.me/2290158255572" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Expert</a>
+                </div>
+            </div>
+
+            <!-- Pôle 6 -->
+            <div class="service-card reveal">
+                <div>
+                    <img class="service-img" src="https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=500&q=80" alt="Invitations">
+                    <h3>Faire-part & Cartes d'Invitation</h3>
+                    <p>Créations graphiques uniques pour vos cérémonies privées ou événements corporatifs.</p>
+                </div>
+                <div class="service-actions">
+                    <button class="btn btn-primary btn-order" data-service="invitations">Commander</button>
+                    <a href="https://wa.me/2290158255572" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Créa</a>
+                </div>
+            </div>
+
+            <!-- Pôle 7 -->
+            <div class="service-card reveal">
+                <div>
+                    <img class="service-img" src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=500&q=80" alt="Apps">
+                    <h3>Création d'Applications Mobile</h3>
+                    <p>Applications performantes cross-platform (iOS & Android) fluides et prêtes pour les stores.</p>
+                </div>
+                <div class="service-actions">
+                    <button class="btn btn-primary btn-order" data-service="apps">Commander</button>
+                    <a href="https://wa.me/22955172503" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Mobile</a>
+                </div>
+            </div>
+
+            <!-- Pôle 8 -->
+            <div class="service-card reveal">
+                <div>
+                    <!-- IMAGE AUTOMATISATION CORRIGÉE -->
+                    <img class="service-img" src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=500&q=80" alt="Automatisation IA">
+                    <h3>Automatisation IA</h3>
+                    <p>Élimination des tâches répétitives via l'interconnexion d'agents autonomes intelligents (LLM).</p>
+                </div>
+                <div class="service-actions">
+                    <button class="btn btn-primary btn-order" data-service="ia">Commander</button>
+                    <a href="https://wa.me/22996966297" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> IA</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Projets Réalisés -->
+    <section class="portfolio" id="portfolio">
+        <h2 class="section-title reveal">Démonstrations de nos <span>Projets</span></h2>
+        
+        <div class="portfolio-filters reveal">
+            <button class="filter-btn active" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="web">Web & SaaS</button>
+            <button class="filter-btn" data-filter="ui-ux">UI/UX & Design</button>
+            <button class="filter-btn" data-filter="ia">Automatisation & Apps</button>
+        </div>
+
+        <div class="portfolio-grid">
+            <!-- Projet 1: Site Web -->
+            <div class="portfolio-item reveal" data-category="web">
+                <img class="portfolio-thumb" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80" alt="Projet Web Actif">
+                <div class="portfolio-info">
+                    <span>Site Web & SaaS</span>
+                    <h4>E-Commerce Multi-vendeurs Actif</h4>
+                    <a href="https://example.com" target="_blank" class="project-link-btn"><i class="fas fa-external-link-alt"></i> Visiter le site</a>
+                </div>
+            </div>
+            <!-- Projet 2: UI/UX (Faire-part / Design) -->
+            <div class="portfolio-item reveal" data-category="ui-ux">
+                <img class="portfolio-thumb" src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=400&q=80" alt="Faire part premium">
+                <div class="portfolio-info">
+                    <span>Faire-part & Invitations</span>
+                    <h4>Catalogue Numérique Premium Luxe</h4>
+                    <a href="assets/sample-invitation.pdf" target="_blank" class="project-link-btn"><i class="fas fa-file-pdf"></i> Voir le PDF Démo</a>
+                </div>
+            </div>
+            <!-- Projet 3: IA & CRM (IMAGE CORRIGÉE) -->
+            <div class="portfolio-item reveal" data-category="ia">
+                <img class="portfolio-thumb" src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=400&q=80" alt="CRM IA">
+                <div class="portfolio-info">
+                    <span>Automatisation IA</span>
+                    <h4>Routage de leads vers CRM Hubspot</h4>
+                    <span class="badge-tech">Système Interne Client</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Formulaire & Contacts -->
+    <section class="order-contact" id="commander">
+        <div class="order-contact-container">
+            
+            <!-- Formulaire de commande Dynamique UX -->
+            <div class="order-box reveal">
+                <h3 style="font-size: 1.8rem; margin-bottom: 25px;" id="formTitle">Initier un projet</h3>
+                <form id="orderForm">
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="clientLastName">Nom</label>
+                            <input type="text" id="clientLastName" required placeholder="Ex: Dupont">
+                        </div>
+                        <div class="form-group">
+                            <label for="clientFirstName">Prénom</label>
+                            <input type="text" id="clientFirstName" required placeholder="Ex: Jean">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="serviceSelect">Expertise Ciblée</label>
+                            <select id="serviceSelect">
+                                <option value="general">Sélectionnez le service...</option>
+                                <option value="allemand">Professeur d'Allemand</option>
+                                <option value="web">Création de Site Web</option>
+                                <option value="saas">Création de SaaS</option>
+                                <option value="ui-ux">Design UI/UX</option>
+                                <option value="tiktok">Compte TikTok Monétisable</option>
+                                <option value="invitations">Faire-part & Invitations</option>
+                                <option value="apps">Création d'Application</option>
+                                <option value="ia">Automatisation IA</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="clientWhatsapp">Numéro WhatsApp (avec indicatif)</label>
+                            <input type="tel" id="clientWhatsapp" required placeholder="Ex: +22901XXXXXXXX">
+                        </div>
+                    </div>
+
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="projectBudget">Votre enveloppe budgétaire (€ / FCFA)</label>
+                            <input type="text" id="projectBudget" required placeholder="Ex: 500€ - 1200€">
+                        </div>
+                        <div class="form-group">
+                            <label for="projectUrgency">Niveau d'urgence de livraison</label>
+                            <select id="projectUrgency">
+                                <option value="Normal">Normal (Délai standard)</option>
+                                <option value="Pressé">Pressé (Prioritaire)</option>
+                                <option value="Très Urgent">Très Urgent (Livrable express)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projectDesc">Cahier des charges & Préférences</label>
+                        <textarea id="projectDesc" rows="4" required placeholder="Décrivez en détail les fonctionnalités ou critères spécifiques souhaités..."></textarea>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="btn btn-primary submit-ux-btn">
+                        <span>Transmettre la commande</span> <i class="fas fa-paper-plane"></i>
+                    </button>
+
+                    <!-- Mentions Légales Obligatoires UE / RGPD -->
+                    <p class="rgpd-notice">
+                        <i class="fas fa-shield-alt"></i> Conforme RGPD : Les informations transmises via ce formulaire servent uniquement à la composition du message de commande chiffré destiné à notre pôle technique. Aucune donnée n'est stockée sans votre consentement explicite.
+                    </p>
+                </form>
+            </div>
+
+            <!-- Coordonnées Administratives -->
+            <div class="contact-box reveal">
+                <h3 style="font-size: 1.8rem; margin-bottom: 25px;">Siège Administratif</h3>
+                <p style="color: var(--text-muted); margin-bottom: 30px; line-height: 1.6;">Pour les requêtes globales d'entreprise, partenariats ou gestions administratives multi-pôles.</p>
+                
+                <div class="contact-info-item">
+                    <i class="fas fa-building"></i>
+                    <div>
+                        <h4>ENTREPRISE</h4>
+                        <p>WELT DER KOMPETENZEN</p>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>EMAIL CENTRAL</h4>
+                        <p>weltderkompetenz@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <div>
+                        <h4>STANDARD WHATSAPP</h4>
+                        <p>+229 01 58 25 55 72</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zone Commentaires Internationaux -->
+    <section class="testimonials">
+        <h2 class="section-title reveal">Retours d'Expérience <span>Internationaux</span></h2>
+        <div class="testimonials-grid">
+            
+            <!-- 5 Pays Africains -->
+            <div class="testimonial-card reveal">
+                <span class="geo-tag"><i class="fas fa-map-marker-alt"></i> Bénin</span>
+                <p>"La plateforme Web réalisée est d'une fluidité incroyable. Le tunnel de commande WhatsApp convertit 40% de nos prospects."</p>
+                <h5>Koffi M.</h5>
+            </div>
+            <div class="testimonial-card reveal">
+                <span class="geo-tag"><i class="fas fa-map-marker-alt"></i> Côte d'Ivoire</span>
+                <p>"Notre infrastructure SaaS a été livrée dans les temps. Une gestion des bases de données robuste et sécurisée."</p>
+                <h5>Mariam D.</h5>
+            </div>
+            <div class="testimonial-card reveal">
+                <span class="geo-tag"><i class="fas fa-map-marker-alt"></i> Sénégal</span>
+                <p>"Les faire-part virtuels commandés pour notre gala d'affaires ont impressionné l'intégralité de nos convives premium."</p>
+                <h5>Ousmane S.</h5>
+            </div>
+            <div class="testimonial-card reveal">
+                <span class="geo-tag"><i class="fas fa-map-marker-alt"></i> Cameroun</span>
+                <p>"L'automatisation IA mise en place sur notre système logistique a réduit nos erreurs de traitement de près de 80%."</p>
+                <h5>Fouda T.</h5>
+            </div>
+            <div class="testimonial-card reveal">
+                <span class="geo-tag"><i class="fas fa-map-marker-alt"></i> Togo</span>
+                <p>"Excellent compte TikTok monétisé créé avec soin. Les premiers revenus sont tombés dès le deuxième mois."</p>
+                <h5>Abla K.</h5>
+            </div>
+
+            <!-- 4 Union Européenne (2 Allemagne, 1 France/Belgique, 1 Anglais) -->
+            <div class="testimonial-card reveal">
+                <span class="geo-tag"><i class="fas fa-map-marker-alt"></i> Allemagne (DE)</span>
+                <p class="lang-text">"Der Deutschunterricht war absolut erstklassig! Die Lehrmethoden sind hochprofessionell und exakt auf die Geschäftswelt abgestimmt."</p>
+                <h5>Dr. Hans Müller</h5>
+            </div>
+            <div class="testimonial-card reveal">
+                <span class="geo-tag"><i class="fas fa-map-marker-alt"></i> Allemagne (DE)</span>
+                <p class="lang-text">"Exzellente App-Entwicklung. Die UI/UX-Kriterien wurden perfekt umgesetzt, und die Performance unter iOS läuft einwandfrei."</p>
+                <h5>Sabine K.</h5>
+            </div>
+            <div class="testimonial-card reveal">
+                <span class="geo-tag"><i class="fas fa-map-marker-alt"></i> France (UE)</span>
+                <p>"Le redesign complet de notre application fintech par Emmanuel a transformé notre parcours utilisateur. Un pur travail de pro."</p>
+                <h5>Julien L.</h5>
+            </div>
+            <div class="testimonial-card reveal">
+                <span class="geo-tag"><i class="fas fa-map-marker-alt"></i> Irlande (UK/UE)</span>
+                <p class="lang-text">"Outstanding AI workflows implementation. Our automated customer support flows seamlessly now. Highly secured work!"</p>
+                <h5>David O'Connor</h5>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Notification / Pop-up Réussite -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-box">
+            <div class="modal-icon"><i class="fas fa-check-circle"></i></div>
+            <h4>Demande Compilée avec Succès !</h4>
+            <p>Le développeur en charge de votre pôle de compétences va prendre contact avec vous dans quelques instants sur votre WhatsApp.</p>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Vous allez être redirigé vers l'interface sécurisée WhatsApp pour confirmer l'envoi direct.</p>
+            <button class="btn btn-primary" onclick="closeModal()">Fermer la fenêtre</button>
+        </div>
+    </div>
+
+    <!-- Actions Rapides Globales Centralisées -->
+    <div class="floating-actions">
+        <a href="tel:0158255572" class="float-btn float-call" title="Appeler le standard central"><i class="fas fa-phone-alt"></i></a>
+        <a href="https://wa.me/2290158255572" class="float-btn float-wa" target="_blank" title="WhatsApp Standard Central"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <!-- Pied de page avec ta photo & Signature -->
+    <footer>
+        <div class="footer-signature">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Emmanuel Clarius" class="dev-avatar">
+            <div>
+                <p style="font-weight: 600; color: var(--text);">Concept & Développement</p>
+                <p style="color: var(--primary);">EMMANUEL CLARIUS</p>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 WELT DER KOMPETENZEN. Tous droits réservés. Pôles Web Sécurisés.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
