@@ -368,3 +368,40 @@ footer { padding: 40px 5% 20px; border-top: 1px solid var(--card-border); backgr
     .form-row-2 { grid-template-columns: 1fr; gap: 0; }
     .hero-content h1 { font-size: 2.3rem; }
 }
+/* ==========================================
+   SÉCURITÉ MÉDIAS : Évite les bugs de débordement
+   ========================================== */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ==========================================
+   ZONE TÉLÉPHONE (Par défaut)
+   ========================================== */
+/* Forcez vos blocs principaux à s'empiler sur une seule colonne */
+.votre-conteneur-principal, 
+.votre-menu,
+.votre-grille {
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+}
+
+
+/* ==========================================
+   ZONE ORDINATEUR (Écrans de plus de 1024px)
+   ========================================== */
+@media (min-width: 1024px) {
+    /* Ici, remettez vos éléments côte à côte pour les grands écrans */
+    .votre-conteneur-principal {
+        flex-direction: row;
+    }
+    
+    /* Exemple pour une grille de produits ou de cartes */
+    .votre-grille {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 colonnes sur PC */
+    }
+}
