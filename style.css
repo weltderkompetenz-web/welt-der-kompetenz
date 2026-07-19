@@ -119,7 +119,7 @@ body.light-theme .main-header {
     color: #fff;
 }
 
-/* --- ACCUEIL & EFFET PARALLAXE --- */
+/* --- ACCUEIL --- */
 .hero-section {
     position: relative;
     height: 100vh;
@@ -185,7 +185,6 @@ body.light-theme .main-header {
     font-weight: 300;
 }
 
-/* Carte Fondateur & Conteneurs Génériques */
 .service-card, .portfolio-card, .testimonial-card, .founder-card {
     background: var(--card-bg);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -334,7 +333,6 @@ body.light-theme .founder-card {
     margin-bottom: 2rem;
 }
 
-/* Boutons premium */
 .btn-premium {
     display: inline-flex;
     align-items: center;
@@ -360,7 +358,7 @@ body.light-theme .founder-card {
     box-shadow: 0 0 20px var(--accent-glow);
 }
 
-/* --- PORTFOLIO DYNAMIQUE --- */
+/* --- PORTFOLIO --- */
 .portfolio-card {
     border-radius: 16px;
     overflow: hidden;
@@ -379,7 +377,6 @@ body.light-theme .founder-card {
     margin-bottom: 0.5rem;
 }
 
-/* --- FIX DU BOUTON "VOIR LE PROJET" EN MODE CLAIR/SOMBRE --- */
 .portfolio-card .btn-premium {
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -399,7 +396,7 @@ body.light-theme .portfolio-card .btn-premium {
     box-shadow: 0 0 20px var(--accent-glow);
 }
 
-/* --- AVIS ET BULLES --- */
+/* --- TÉMOIGNAGES --- */
 .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -432,7 +429,7 @@ body.light-theme .portfolio-card .btn-premium {
     margin-bottom: 1rem;
 }
 
-/* --- MODULE COMMANDE MODAL --- */
+/* --- MODAL FORMULAIRE --- */
 .modal {
     display: none;
     position: fixed;
@@ -535,17 +532,21 @@ input:focus, textarea:focus, select:focus {
     font-size: 0.95rem;
     cursor: pointer;
     transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .submit-btn:hover {
     opacity: 0.9;
 }
 
-/* --- SYSTÈME DE NOTIFICATION HAUT DE GAMME (EN HAUT À DROITE) --- */
+/* --- TOAST PREMIUM HAUT DROITE --- */
 .toast {
     position: fixed;
     top: 30px;
-    right: -400px; /* Caché par défaut à droite */
+    right: -450px; /* Masqué à droite */
     left: auto;
     transform: none;
     background: rgba(0, 255, 204, 0.12);
@@ -562,14 +563,13 @@ input:focus, textarea:focus, select:focus {
     display: flex;
     align-items: center;
     gap: 1rem;
-    width: 360px;
+    width: 380px;
     transition: right 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* L'icône tourne ou s'illumine pour l'action */
 .toast i {
     color: var(--accent);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
 }
 
 .toast.show {

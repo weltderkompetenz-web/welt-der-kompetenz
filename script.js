@@ -1,91 +1,38 @@
 /**
  * WELT DER KOMPETENZEN - Core Application Engine
- * Premium UX Architecture, Admin Mailing & Safe MoneyFusion Gateway Routing
+ * Premium UX Architecture & Smart Multi-Developer WhatsApp Routing
  */
 
-// --- 1. DATA CONFIGURATION (SERVICES & PORTFOLIO IMAGES UNIQUES ET SÉPARÉES) ---
+// --- 1. CONFIGURATION DES SERVICES AVEC LEURS NUMÉROS DE TÉLÉPHONE DÉDIÉS ---
 const SERVICES_DATA = [
-    { title: "Professeur d'Allemand", phone: "0157812140", img: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80", desc: "Formations et cours linguistiques d'élite. Allemand professionnel, académique et perfectionnement sur mesure pour l'international." },
-    { title: "Création de Site Web", phone: "0158255572", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80", desc: "Développement d'écosystèmes vitrines et applicatifs haut de gamme. Optimisation SEO avancée, 4K UX design, fluidité maximale." },
-    { title: "Création de SaaS", phone: "96966297", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80", desc: "Architecture Cloud souveraine et évolutive. Conception de plateformes logicielles complexes adaptées à la monétisation immédiate." },
-    { title: "Design UI/UX", phone: "55172503", img: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=600&q=80", desc: "Maquettes haute fidélité, wireframing stratégique et design émotionnel axé sur la rétention utilisateur." },
-    { title: "Compte TikTok Monétisé", phone: "0158255572", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=600&q=80", desc: "Création de comptes clés en main éligibles aux programmes de récompenses. Configuration algorithmique optimale." },
-    { title: "Faire-part & Cartes Premium", phone: "0158255572", img: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=600&q=80", desc: "Créations graphiques et papeterie de prestige pour invitations corporatives ou événements privés haut de gamme." },
-    { title: "Application Mobile", phone: "55172503", img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80", desc: "Applications natives et cross-platforme iOS/Android. Expérience immersive fluide, notifications et performances ultimes." },
-    { title: "Automatisation IA & CRM", phone: "96966297", img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80", desc: "Interconnexion d'agents d'intelligence artificielle et optimisation des pipelines CRM pour éradiquer les tâches chronophages." }
+    { title: "Professeur d'Allemand", phone: "+2290157812140", img: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80", desc: "Formations et cours linguistiques d'élite. Allemand professionnel, académique et perfectionnement sur mesure pour l'international." },
+    { title: "Création de Site Web", phone: "+2290155172503", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80", desc: "Développement d'écosystèmes vitrines et applicatifs haut de gamme. Optimisation SEO avancée, 4K UX design, fluidité maximale." },
+    { title: "Création de SaaS", phone: "+2290196966297", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80", desc: "Architecture Cloud souveraine et évolutive. Conception de plateformes logicielles complexes adaptées à la monétisation immédiate." },
+    { title: "Design UI/UX", phone: "+2290163151462", img: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=600&q=80", desc: "Maquettes haute fidélité, wireframing stratégique et design émotionnel axé sur la rétention utilisateur." },
+    { title: "Compte TikTok Monétisé", phone: "+2290158255572", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=600&q=80", desc: "Création de comptes clés en main éligibles aux programmes de récompenses. Configuration algorithmique optimale." },
+    { title: "Faire-part & Cartes Premium", phone: "+2290158255572", img: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=600&q=80", desc: "Créations graphiques et papeterie de prestige pour invitations corporatives ou événements privés haut de gamme." },
+    { title: "Application Mobile", phone: "+2290155172503", img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80", desc: "Applications natives et cross-platforme iOS/Android. Expérience immersive fluide, notifications et performances ultimes." },
+    { title: "Automatisation IA & CRM", phone: "+2290196966297", img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80", desc: "Interconnexion d'agents d'intelligence artificielle et optimisation des pipelines CRM pour éradiquer les tâches chronophages." }
 ];
 
 const PORTFOLIO_DATA = [
-    { 
-        title: "Plateforme Linguistique DeutschPro", 
-        serviceIdx: 0, 
-        img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80", 
-        link: "https://example.com/demo-deutsch", 
-        type: "web" 
-    },
-    { 
-        title: "E-Commerce Luxury & Headless Architecture", 
-        serviceIdx: 1, 
-        img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80", 
-        link: "https://example.com/demo-shop", 
-        type: "web" 
-    },
-    { 
-        title: "SaaS Enterprise Resource Planning Analytics", 
-        serviceIdx: 2, 
-        img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80", 
-        link: "https://example.com/demo-saas", 
-        type: "web" 
-    },
-    { 
-        title: "UI/UX Mobile Fintech App Redesign", 
-        serviceIdx: 3, 
-        img: "https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?auto=format&fit=crop&w=600&q=80", 
-        link: "https://example.com/demo-ui", 
-        type: "web" 
-    },
-    { 
-        title: "Réseau TikTok Media Booster Agency", 
-        serviceIdx: 4, 
-        img: "https://images.unsplash.com/photo-1611606063065-ee7946f0787a?auto=format&fit=crop&w=600&q=80", 
-        link: "https://example.com/demo-tiktok", 
-        type: "web" 
-    },
-    { 
-        title: "Faire-Part Numérique Prestige Royal Ébène", 
-        serviceIdx: 5, 
-        img: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80", 
-        link: "https://example.com/demo-invitation.pdf", 
-        type: "pdf" 
-    },
-    { 
-        title: "App Mobile Livraison Express & Géolocalisée", 
-        serviceIdx: 6, 
-        img: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=600&q=80", 
-        link: "https://example.com/demo-app", 
-        type: "web" 
-    },
-    { 
-        title: "Dashboard Automatisation IA & Workflow Hub", 
-        serviceIdx: 7, 
-        img: "https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?auto=format&fit=crop&w=600&q=80", 
-        link: "https://example.com/demo-crm-ai", 
-        type: "web" 
-    }
+    { title: "Plateforme Linguistique DeutschPro", serviceIdx: 0, img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80", link: "https://example.com/demo-deutsch", type: "web" },
+    { title: "E-Commerce Luxury & Headless Architecture", serviceIdx: 1, img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80", link: "https://example.com/demo-shop", type: "web" },
+    { title: "SaaS Enterprise Resource Planning Analytics", serviceIdx: 2, img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80", link: "https://example.com/demo-saas", type: "web" },
+    { title: "UI/UX Mobile Fintech App Redesign", serviceIdx: 3, img: "https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?auto=format&fit=crop&w=600&q=80", link: "https://example.com/demo-ui", type: "web" },
+    { title: "Réseau TikTok Media Booster Agency", serviceIdx: 4, img: "https://images.unsplash.com/photo-1611606063065-ee7946f0787a?auto=format&fit=crop&w=600&q=80", link: "https://example.com/demo-tiktok", type: "web" },
+    { title: "Faire-Part Numérique Prestige Royal Ébène", serviceIdx: 5, img: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80", link: "https://example.com/demo-invitation.pdf", type: "pdf" },
+    { title: "App Mobile Livraison Express & Géolocalisée", serviceIdx: 6, img: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=600&q=80", link: "https://example.com/demo-app", type: "web" },
+    { title: "Dashboard Automatisation IA & Workflow Hub", serviceIdx: 7, img: "https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?auto=format&fit=crop&w=600&q=80", link: "https://example.com/demo-crm-ai", type: "web" }
 ];
 
 const TESTIMONIALS_DATA = [
-    { name: "Koffi Mensah", country: "Côte d'Ivoire", flag: "🇨🇮", stars: 5, text: "Le SaaS livré a transformé notre logistique à Abidjan. Chapeau bas à Emmanuel." },
+    { name: "Koffi Mensah", country: "Côte d'Ivoire", flag: "🇨🇮", stars: 5, text: "Le SaaS livré a transformé notre logistique à Abidjan. Chapeau bas à l'équipe." },
     { name: "Awa Diop", country: "Sénégal", flag: "🇸🇳", stars: 5, text: "L'interface UI/UX de notre application mobile fait l'unanimité auprès de nos clients." },
     { name: "Serge Houndo", country: "Bénin", flag: "🇧🇯", stars: 5, text: "L'automatisation de notre CRM par l'IA nous fait économiser des dizaines d'heures par semaine." },
     { name: "Marc Mbarga", country: "Cameroun", flag: "🇨🇲", stars: 5, text: "Le site vitrine premium conçu pour notre cabinet est simplement spectaculaire." },
     { name: "Inès Bongo", country: "Gabon", flag: "🇬🇦", stars: 5, text: "Expertise, réactivité et professionnalisme irréprochable tout au long du projet." },
-    { name: "Pierre Dubois", country: "France", flag: "🇫🇷", stars: 5, text: "Design 4K UX d'une finesse rare. Les transitions sont fluides, le code est d'une propreté exemplaire." },
-    { name: "Jean-Paul Timmermans", country: "Belgique", flag: "🇧🇪", stars: 5, text: "L'intégration du système SaaS répond parfaitement aux exigences de scalabilité de notre entreprise." },
-    { name: "Luc Schmit", country: "Luxembourg", flag: "🇱🇺", stars: 5, text: "Very high level development engineering. Processus carré et sécurisé." },
-    { name: "Müller Hans", country: "Allemagne", flag: "🇩🇪", stars: 5, text: "Hervorragende Arbeit! Die Automatisierung läuft fehlerfrei und der Support ist weltklasse." },
-    { name: "Franziska Hofer", country: "Autriche", flag: "🇦🇹", stars: 5, text: "Der Deutschunterricht und die begleitende Lernplattform sont absolument erstklassig structurés." },
-    { name: "Johnathan Wright", country: "USA", flag: "🇺🇸", stars: 5, text: "Exceptional UI design craftsmanship. Emmanuel delivered our enterprise mobile app ahead of schedule." }
+    { name: "Pierre Dubois", country: "France", flag: "🇫🇷", stars: 5, text: "Design 4K UX d'une finesse rare. Les transitions sont fluides, le code est d'une propreté exemplaire." }
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -151,7 +98,6 @@ function initPortfolio() {
 
 function initTestimonials() {
     const grid = document.getElementById("testimonialsGrid");
-    PORTFOLIO_DATA.length = 0; // Fixes context mirroring if applied in some compilers
     TESTIMONIALS_DATA.forEach(t => {
         const card = document.createElement("div");
         card.className = "testimonial-card";
@@ -238,7 +184,6 @@ function initParticles() {
 // --- 4. THEME CONTROLLER ---
 function initTheme() {
     const btn = document.getElementById("themeToggle");
-    
     btn.addEventListener("click", () => {
         if (document.body.classList.contains("dark-theme")) {
             document.body.classList.replace("dark-theme", "light-theme");
@@ -250,7 +195,7 @@ function initTheme() {
     });
 }
 
-// --- 5. INTERACTIONS PARALLAXE & TEXT MASKING ---
+// --- 5. INTERACTIONS & MODAL ---
 function initInteractions() {
     const parallaxBg = document.getElementById("parallaxBg");
     window.addEventListener("scroll", () => {
@@ -287,15 +232,15 @@ function closeOrderModal() {
     document.body.style.overflow = "auto";
 }
 
-// --- 6. CONFIGURATION COMMANDE, EMAIL ADMIN & PASSERELLE DE PAIEMENT ---
+// --- 6. ROUTAGE INTELLIGENT VERS LE WHATSAPP DU DÉVELOPPEUR ATTITRÉ ---
 function handleFormSubmit(e) {
     e.preventDefault();
     
-    const clientName = sanitizeHTML(document.getElementById("clientName").value.trim());
-    const clientWhatsapp = sanitizeHTML(document.getElementById("clientWhatsapp").value.trim());
-    const projectDesc = sanitizeHTML(document.getElementById("projectDesc").value.trim());
-    const projectBudget = sanitizeHTML(document.getElementById("projectBudget").value.trim()) || "Non spécifié";
-    const projectUrgency = sanitizeHTML(document.getElementById("projectUrgency").value);
+    const clientName = document.getElementById("clientName").value.trim();
+    const clientWhatsapp = document.getElementById("clientWhatsapp").value.trim();
+    const projectDesc = document.getElementById("projectDesc").value.trim();
+    const projectBudget = document.getElementById("projectBudget").value.trim() || "Non spécifié";
+    const projectUrgency = document.getElementById("projectUrgency").value;
     const serviceIdx = document.getElementById("selectedServiceIndex").value;
 
     if (!clientName || !clientWhatsapp || !projectDesc) {
@@ -303,36 +248,31 @@ function handleFormSubmit(e) {
         return;
     }
 
+    // Récupération des infos du service sélectionné et du bon numéro
     const targetedService = SERVICES_DATA[serviceIdx];
-    const adminEmail = "ctchaloko@gmail.com";
-    const paymentUrl = "https://www.pay.moneyfusion.net/PayMobile/6174baf9990a52b2/pay/";
+    let developerPhone = targetedService.phone.replace(/\+/g, ''); // Nettoie le '+' pour l'API WhatsApp
 
-    // 1. Construction du corps de l'e-mail destiné à l'administrateur
-    const emailSubject = `[WELT DER KOMPETENZEN] Nouvelle commande de ${clientName}`;
-    let emailBody = `Bonjour,\n\n`;
-    emailBody += `Une nouvelle commande premium vient d'être initiée sur le portfolio :\n\n`;
-    emailBody += `• Service commandé : ${targetedService.title}\n`;
-    emailBody += `• Nom du client : ${clientName}\n`;
-    emailBody += `• Contact WhatsApp : ${clientWhatsapp}\n`;
-    emailBody += `• Description du besoin : ${projectDesc}\n`;
-    emailBody += `• Budget estimé : ${projectBudget}\n`;
-    emailBody += `• Degré d'urgence : ${projectUrgency}\n\n`;
-    emailBody += `Le client a été redirigé vers la passerelle MoneyFusion pour procéder au paiement.\n`;
+    // Construction du message formaté pour WhatsApp
+    let whatsappMessage = `*🔥 NOUVELLE COMMANDE PREMIUM — WELT DER KOMPETENZEN * \n\n`;
+    whatsappMessage += `*📌 Service :* ${targetedService.title}\n`;
+    whatsappMessage += `*👤 Client :* ${clientName}\n`;
+    whatsappMessage += `*💬 WhatsApp Client :* ${clientWhatsapp}\n`;
+    whatsappMessage += `*💰 Budget :* ${projectBudget}\n`;
+    whatsappMessage += `*⚡ Urgence :* ${projectUrgency}\n\n`;
+    whatsappMessage += `*📝 Cahier des charges :*\n${projectDesc}`;
 
-    const mailtoUrl = `mailto:${adminEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    // URL de l'API Universelle WhatsApp (fonctionne sur PC, Android et iOS)
+    const whatsappUrl = `https://wa.me/${developerPhone}?text=${encodeURIComponent(whatsappMessage)}`;
 
     closeOrderModal();
     
-    document.getElementById("toastMessage").innerText = "Commande initiée avec succès. Redirection vers MoneyFusion...";
+    // Déclenchement du Toast haut de gamme
     showToast();
 
-    // 2. Déclenchement de l'envoi de l'e-mail via le client de messagerie local
-    window.location.href = mailtoUrl;
-
-    // 3. Redirection vers l'interface de paiement MoneyFusion après une courte pause de 1.5s
+    // Redirection instantanée vers le WhatsApp du développeur en charge
     setTimeout(() => {
-        window.open(paymentUrl, '_blank', 'noopener,noreferrer');
-    }, 1500);
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    }, 1200);
 }
 
 function showToast() {
