@@ -20,6 +20,14 @@
     <!-- Barre de Navigation -->
     <header>
         <div class="logo">WELT DER KOMPETENZEN</div>
+        
+        <!-- AJOUT : Bouton discret Menu Hamburger (Uniquement visible sur Mobile) -->
+        <button class="hamburger" aria-label="Menu de navigation" style="display: none;">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
         <nav>
             <a href="#accueil">Accueil</a>
             <a href="#services">Services</a>
@@ -167,32 +175,40 @@
         </div>
 
         <div class="portfolio-grid">
+            <!-- Projet 1 avec bouton d'action et flèche masquée par défaut -->
             <div class="portfolio-item reveal" data-category="web">
                 <img class="portfolio-thumb" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80" alt="SaaS HR">
                 <div class="portfolio-info">
                     <span>SaaS</span>
                     <h4>Plateforme RH Intelligente</h4>
+                    <a href="#" class="btn-project">Voir le projet <i class="fas fa-arrow-left arrow-animated"></i></a>
                 </div>
             </div>
+            <!-- Projet 2 avec bouton d'action et flèche masquée par défaut -->
             <div class="portfolio-item reveal" data-category="ui-ux">
                 <img class="portfolio-thumb" src="https://images.unsplash.com/photo-1618788372246-79faff0c3742?auto=format&fit=crop&w=400&q=80" alt="App UI">
                 <div class="portfolio-info">
                     <span>UI/UX Design</span>
                     <h4>Design d'application Crypto</h4>
+                    <a href="#" class="btn-project">Voir le projet <i class="fas fa-arrow-left arrow-animated"></i></a>
                 </div>
             </div>
+            <!-- Projet 3 avec bouton d'action et flèche masquée par défaut -->
             <div class="portfolio-item reveal" data-category="ia">
                 <img class="portfolio-thumb" src="https://images.unsplash.com/photo-1680814920042-4f8115b8fb3b?auto=format&fit=crop&w=400&q=80" alt="Automatisation CRM">
                 <div class="portfolio-info">
                     <span>Automatisation IA</span>
                     <h4>Sync IA vers Hubspot CRM</h4>
+                    <a href="#" class="btn-project">Voir le projet <i class="fas fa-arrow-left arrow-animated"></i></a>
                 </div>
             </div>
+            <!-- Projet 4 avec bouton d'action et flèche masquée par défaut -->
             <div class="portfolio-item reveal" data-category="autres">
                 <img class="portfolio-thumb" src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=400&q=80" alt="Faire part mariage">
                 <div class="portfolio-info">
                     <span>Invitations</span>
                     <h4>Faire-part Mariage Premium Luxe</h4>
+                    <a href="#" class="btn-project">Voir le projet <i class="fas fa-arrow-left arrow-animated"></i></a>
                 </div>
             </div>
         </div>
@@ -220,9 +236,12 @@
                             <option value="ia">Automatisation IA</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="clientName">Votre Nom Complet</label>
-                        <input type="text" id="clientName" required placeholder="Ex: Jean Dupont">
+                    <!-- AJOUT : Conteneur pour Nom et Prénom sur une ligne unique sur PC -->
+                    <div class="form-row-desktop">
+                        <div class="form-group flex-1">
+                            <label for="clientName">Votre Nom Complet</label>
+                            <input type="text" id="clientName" required placeholder="Ex: Jean Dupont">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="clientEmail">Adresse Email</label>
@@ -301,165 +320,23 @@
         <a href="https://wa.me/123456789" class="float-btn float-wa" target="_blank" title="Discuter sur WhatsApp"><i class="fab fa-whatsapp"></i></a>
     </div>
 
-    <!-- Pied de page -->
+    <!-- Pied de page mis à jour avec la Signature Officielle Dynamique et le Bloc RGPD -->
     <footer>
+        <!-- AJOUT : Bloc de conformité RGPD propre -->
+        <div class="rgpd-container" style="max-width: 800px; margin: 0 auto 25px auto; font-size: 0.85rem; opacity: 0.8; line-height: 1.5; text-align: center;">
+            <p>🔒 <strong>Respect de la vie privée (RGPD) :</strong> En soumettant une formule de besoin, vous acceptez que vos données soient sécurisées et exploitées de façon unique par nos équipes techniques internes pour l'élaboration de votre devis. Aucune revente commerciale.</p>
+        </div>
+        
+        <!-- AJOUT : Ta signature officielle dynamique -->
+        <div class="signature-block" style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 15px;">
+            <i class="fas fa-code" style="font-size: 1.2rem; color: #00ffcc;"></i>
+            <span style="letter-spacing: 1px; font-weight: 600;">Concepteur & Développeur : EMMANUEL CLARIUS</span>
+        </div>
+
         <p>&copy; 2026 WELT DER KOMPETENZEN. Tous droits réservés.</p>
     </footer>
 
     <!-- Lien vers ton fichier JavaScript -->
-    <script src="script.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welt Der Kompetenzen - Emmanuel Clarius</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <!-- Thème Toggle et Arrière-plan Digital -->
-    <div class="digital-bg"></div>
-    <button id="theme-toggle" class="theme-btn" aria-label="Changer de mode">🌓 Mode</button>
-
-    <!-- Navigation interactive -->
-    <header>
-        <div class="logo">WELT DER KOMPETENZEN</div>
-        <button class="hamburger" aria-label="Menu de navigation">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <nav class="nav-links">
-            <a href="#accueil">Accueil</a>
-            <a href="#services">Services</a>
-            <a href="#portfolio">Projets</a>
-            <a href="#commander">Commander</a>
-        </nav>
-    </header>
-
-    <!-- Section Héro / Accueil -->
-    <section id="accueil" class="hero">
-        <div class="hero-text">
-            <h1>Bienvenue dans la <br><span>Welt Der Kompetenzen</span></h1>
-            <p>Le carrefour d'élite combinant linguistique, ingénierie logicielle (SaaS, Web, Mobile), design stratégique et systèmes d'automatisations propulsés par l'IA.</p>
-            <a href="#services" class="btn-main">Explorer nos pôles <i>→</i></a>
-        </div>
-        <div class="hero-avatar">
-            <div class="avatar-wrapper">
-                <img alt="Emmanuel Clarius" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80">
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Services (8 cartes) -->
-    <section id="services" class="services-section">
-        <h2>Nos <span>Pôles d'Expertise</span></h2>
-        <div class="services-grid">
-            <!-- Carte 1 -->
-            <div class="card-3d">
-                <div class="card-content">
-                    <img alt="Allemand" src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=500&q=80">
-                    <h3>Professeur d'Allemand</h3>
-                    <p>Programmes intensifs du niveau A1 à C2 adaptés au cadre professionnel et académique européen.</p>
-                </div>
-                <div class="card-actions">
-                    <a href="#commander" class="btn-order">Commander</a>
-                    <a href="https://wa.me/49157812140" target="_blank" class="btn-whatsapp">WhatsApp</a>
-                </div>
-            </div>
-            <!-- Carte 2 -->
-            <div class="card-3d">
-                <div class="card-content">
-                    <img alt="Web" src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=500&q=80">
-                    <h3>Création de Site Web</h3>
-                    <p>Architectures Web modernes (Vitrines, E-commerce) centrées sur la vitesse et l'indexation SEO.</p>
-                </div>
-                <div class="card-actions">
-                    <a href="#commander" class="btn-order">Commander</a>
-                    <a href="https://wa.me/2290158255572" target="_blank" class="btn-whatsapp">WhatsApp</a>
-                </div>
-            </div>
-            <!-- Répétez le bloc .card-3d pour les 6 autres services avec leurs liens WhatsApp respectifs -->
-        </div>
-    </section>
-
-    <!-- Section Portfolio -->
-    <section id="portfolio" class="portfolio-section">
-        <h2>Démonstrations de nos <span>Projets</span></h2>
-        <div class="portfolio-grid">
-            <!-- Projet 1 -->
-            <div class="project-card">
-                <img alt="Projet Web Actif" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80">
-                <div class="project-info">
-                    <span>Site Web & SaaS</span>
-                    <h4>E-Commerce Multi-vendeurs Actif</h4>
-                    <a href="https://example.com" target="_blank" class="btn-project">
-                        <span class="btn-text">Voir le projet</span>
-                        <span class="btn-arrow">→</span>
-                    </a>
-                </div>
-            </div>
-            <!-- Répétez pour les autres projets... -->
-        </div>
-    </section>
-
-    <!-- Section Contact / Formulaire et Siège -->
-    <section id="commander" class="contact-section">
-        <div class="contact-container">
-            <div class="form-block">
-                <h3>Initier un projet</h3>
-                <form id="orderForm">
-                    <div class="form-group-row">
-                        <input type="text" placeholder="Nom" required>
-                        <input type="text" placeholder="Prénom" required>
-                    </div>
-                    <div class="form-group-row">
-                        <input type="number" placeholder="Budget estimé (€ / $)" required>
-                        <input type="tel" placeholder="Numéro WhatsApp" required>
-                    </div>
-                    <textarea placeholder="Décrivez votre besoin de projet..." rows="5" required></textarea>
-                    <button type="submit" class="btn-submit">Soumettre la demande</button>
-                </form>
-            </div>
-            <div class="siege-block">
-                <h3>Siège Administratif</h3>
-                <p>Pour les requêtes globales d'entreprise, partenariats ou gestions administratives multi-pôles.</p>
-                <div class="info-item">
-                    <h4>ENTREPRISE</h4>
-                    <p>WELT DER KOMPETENZEN</p>
-                </div>
-                <div class="info-item">
-                    <h4>EMAIL CENTRAL</h4>
-                    <p>weltderkompetenz@gmail.com</p>
-                </div>
-                <div class="info-item">
-                    <h4>STANDARD WHATSAPP</h4>
-                    <p>+229 01 58 25 55 72</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pied de page avec RGPD & Signature Dynamique -->
-    <footer>
-        <div class="footer-rgpd">
-            <p>🔒 <strong>Conformité RGPD & Protection des données :</strong> Les informations recueillies sur ce formulaire sont cryptées et traitées uniquement dans le cadre de la contractualisation de votre projet. Aucun usage commercial ou revente à des tiers n'est pratiqué.</p>
-        </div>
-        <div class="footer-main">
-            <div class="signature">
-                <img alt="Emmanuel Clarius" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80">
-                <div>
-                    <p class="sig-title">Concept & Développement</p>
-                    <p class="sig-name">EMMANUEL CLARIUS</p>
-                </div>
-            </div>
-            <p class="copyright">© 2026 WELT DER KOMPETENZEN. Tous droits réservés. Pôles Web Sécurisés.</p>
-        </div>
-    </footer>
-
     <script src="script.js"></script>
 </body>
 </html>

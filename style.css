@@ -389,7 +389,6 @@ img, video, iframe {
     width: 100% !important;
 }
 
-
 /* ==========================================
    ZONE ORDINATEUR (Écrans de plus de 1024px)
    ========================================== */
@@ -404,4 +403,92 @@ img, video, iframe {
         display: grid;
         grid-template-columns: repeat(3, 1fr); /* 3 colonnes sur PC */
     }
+}
+
+/* ==========================================
+   AJOUTS STRUCTURELS REQUIS (NOUVELLES CARACTÉRISTIQUES)
+   ========================================== */
+
+/* 1. BOUTON MENU HAMBURGER DISCRET (Mobile uniquement) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 110;
+}
+.hamburger span {
+    width: 100%;
+    height: 2px;
+    background-color: var(--text);
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex; /* Rendu visible uniquement sur mobile/tablette */
+    }
+    header nav {
+        display: none; /* Cache la navigation classique par défaut en responsive */
+    }
+}
+
+/* 2. STYLE DES BOUTONS PROJETS ET ANIMATION DES FLÈCHES (PORTFOLIO) */
+.btn-project {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: opacity 0.3s ease;
+}
+.btn-project:hover {
+    opacity: 0.8;
+}
+.arrow-animated {
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+/* Déclenchement de l'animation de la flèche au survol de la carte projet */
+.portfolio-item:hover .arrow-animated {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 3. CONTENEUR DU FORMULAIRE (LIGNE UNIQUE POUR NOM/PRÉNOM SUR PC) */
+@media (min-width: 1024px) {
+    .form-row-desktop {
+        display: flex;
+        gap: 15px;
+        width: 100%;
+    }
+    .flex-1 {
+        flex: 1;
+    }
+}
+
+/* 4. BLOC RGPD ET CONFORMITÉ DE SÉCURITÉ */
+.rgpd-container {
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 15px;
+}
+.rgpd-container strong {
+    color: var(--text);
+}
+
+/* 5. BLOC SIGNATURE OFFICIELLE EMMANUEL CLARIUS */
+.signature-block {
+    color: var(--text);
+    font-size: 0.95rem;
+    text-shadow: 0 0 8px rgba(0, 255, 204, 0.2);
 }
