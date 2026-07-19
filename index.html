@@ -4,13 +4,478 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welt Der Kompetenzen - Hub de Services Professionnels</title>
-    
-    <!-- Liens Externes (Icônes et Polices) -->
+    <!-- FontAwesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
-    <!-- Lien vers ton fichier CSS -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- CORE CSS & VARIABLES --- */
+        :root {
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --bg-dark: #0a0b10;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text: #ffffff;
+            --text-muted: #a0aec0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Arrière-plan animé (Parallaxe + Image IA) */
+        .parallax-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 110vh;
+            background: linear-gradient(rgba(10, 11, 16, 0.85), rgba(10, 11, 16, 0.95)), 
+                        url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            z-index: -1;
+            transform: translateY(0);
+            transition: transform 0.1s linear;
+        }
+
+        /* --- UTILITIES & ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.6);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: #fff;
+        }
+
+        .btn-whatsapp:hover {
+            background: #20ba5a;
+            transform: scale(1.05);
+        }
+
+        /* --- NAVBAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            background: rgba(10, 11, 16, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* --- HERO SECTION (ACCUEIL) --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 5% 60px;
+            gap: 50px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-img-wrapper {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            animation: morph 8s ease-in-out infinite alternate;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.3);
+        }
+
+        .profile-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%; }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        }
+
+        /* --- SERVICES SECTION --- */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .services {
+            padding: 80px 5%;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.1);
+        }
+
+        .service-img {
+            width: 100%;
+            height: 180px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .service-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .service-actions .btn {
+            padding: 10px 15px;
+            font-size: 0.85rem;
+            flex: 1;
+            justify-content: center;
+        }
+
+        /* --- PORTFOLIO (PROJETS REALISES) --- */
+        .portfolio {
+            padding: 80px 5%;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: #000;
+            border-color: var(--primary);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 15px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-item.hidden {
+            display: none;
+        }
+
+        .portfolio-thumb {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .portfolio-info {
+            padding: 20px;
+        }
+
+        .portfolio-info span {
+            font-size: 0.75rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .portfolio-info h4 {
+            margin: 5px 0 10px;
+        }
+
+        /* --- SECTION COMMANDE & CONTACT --- */
+        .order-contact-container {
+            padding: 80px 5%;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+        }
+
+        .order-box, .contact-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            color: white;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .contact-info-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* --- COMMENTAIRES / TEMOIGNAGES --- */
+        .testimonials {
+            padding: 80px 5%;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 25px;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .testimonial-card i.quote {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: rgba(0, 242, 254, 0.1);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .user-info img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* --- FLOATING ACTIONS (CTA) --- */
+        .floating-actions {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .float-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+
+        .float-call { background: #007aff; }
+        .float-wa { background: #25D366; }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero { flex-direction: column-reverse; text-align: center; }
+            .order-contact-container { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.5rem; }
+        }
+    </style>
 </head>
 <body>
 
@@ -20,14 +485,6 @@
     <!-- Barre de Navigation -->
     <header>
         <div class="logo">WELT DER KOMPETENZEN</div>
-        
-        <!-- AJOUT : Bouton discret Menu Hamburger (Uniquement visible sur Mobile) -->
-        <button class="hamburger" aria-label="Menu de navigation" style="display: none;">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
         <nav>
             <a href="#accueil">Accueil</a>
             <a href="#services">Services</a>
@@ -45,8 +502,8 @@
         </div>
         <div class="hero-image reveal">
             <div class="profile-img-wrapper">
-                <!-- METS TA PHOTO ICI (Remplace l'URL) -->
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80" alt="Directeur Général">
+                <!-- METS TA PHOTO ICI -->
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80" alt="Votre Nom / Directeur Général">
             </div>
         </div>
     </section>
@@ -64,7 +521,7 @@
                     <p>Cours personnalisés de niveau A1 à C2. Apprentissage accéléré axé sur la pratique pro.</p>
                 </div>
                 <div class="service-actions">
-                    <button class="btn btn-primary btn-order" data-service="allemand">Commander</button>
+                    <button class="btn btn-primary" onclick="selectService('allemand')">Commander</button>
                     <a href="https://wa.me/123456789" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Pro</a>
                 </div>
             </div>
@@ -77,7 +534,7 @@
                     <p>Des sites vitrines et e-commerce modernes, ultra-rapides et optimisés pour le SEO.</p>
                 </div>
                 <div class="service-actions">
-                    <button class="btn btn-primary btn-order" data-service="web">Commander</button>
+                    <button class="btn btn-primary" onclick="selectService('web')">Commander</button>
                     <a href="https://wa.me/123456789" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Dev</a>
                 </div>
             </div>
@@ -90,7 +547,7 @@
                     <p>Développement de logiciels par abonnement sur-mesure et scalables avec architectures cloud robustes.</p>
                 </div>
                 <div class="service-actions">
-                    <button class="btn btn-primary btn-order" data-service="saas">Commander</button>
+                    <button class="btn btn-primary" onclick="selectService('saas')">Commander</button>
                     <a href="https://wa.me/123456789" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Dev</a>
                 </div>
             </div>
@@ -103,7 +560,7 @@
                     <p>Prototypes haute fidélité et interfaces intuitives pensées pour maximiser votre taux de conversion.</p>
                 </div>
                 <div class="service-actions">
-                    <button class="btn btn-primary btn-order" data-service="ui-ux">Commander</button>
+                    <button class="btn btn-primary" onclick="selectService('ui-ux')">Commander</button>
                     <a href="https://wa.me/123456789" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Designer</a>
                 </div>
             </div>
@@ -116,7 +573,7 @@
                     <p>Création, paramétrage et stratégies de croissance pour des comptes prêts pour la monétisation.</p>
                 </div>
                 <div class="service-actions">
-                    <button class="btn btn-primary btn-order" data-service="tiktok">Commander</button>
+                    <button class="btn btn-primary" onclick="selectService('tiktok')">Commander</button>
                     <a href="https://wa.me/123456789" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Expert</a>
                 </div>
             </div>
@@ -129,7 +586,7 @@
                     <p>Designs graphiques d'exception imprimables et numériques pour tous vos événements marquants.</p>
                 </div>
                 <div class="service-actions">
-                    <button class="btn btn-primary btn-order" data-service="invitations">Commander</button>
+                    <button class="btn btn-primary" onclick="selectService('invitations')">Commander</button>
                     <a href="https://wa.me/123456789" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Design</a>
                 </div>
             </div>
@@ -142,7 +599,7 @@
                     <p>Développement d'applications mobiles performantes sous iOS et Android (natives ou hybrides).</p>
                 </div>
                 <div class="service-actions">
-                    <button class="btn btn-primary btn-order" data-service="apps">Commander</button>
+                    <button class="btn btn-primary" onclick="selectService('apps')">Commander</button>
                     <a href="https://wa.me/123456789" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Dev</a>
                 </div>
             </div>
@@ -155,7 +612,7 @@
                     <p>Intégration d'agents intelligents et automatisation de vos workflows d'entreprise répétitifs.</p>
                 </div>
                 <div class="service-actions">
-                    <button class="btn btn-primary btn-order" data-service="ia">Commander</button>
+                    <button class="btn btn-primary" onclick="selectService('ia')">Commander</button>
                     <a href="https://wa.me/123456789" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Expert IA</a>
                 </div>
             </div>
@@ -167,48 +624,40 @@
         <h2 class="section-title reveal">Nos Réalisations <span>Clients</span></h2>
         
         <div class="portfolio-filters reveal">
-            <button class="filter-btn active" data-filter="all">Tous</button>
-            <button class="filter-btn" data-filter="web">Web & SaaS</button>
-            <button class="filter-btn" data-filter="ui-ux">UI/UX</button>
-            <button class="filter-btn" data-filter="ia">IA & Apps</button>
-            <button class="filter-btn" data-filter="autres">Autres</button>
+            <button class="filter-btn active" onclick="filterPortfolio('all')">Tous</button>
+            <button class="filter-btn" onclick="filterPortfolio('web')">Web & SaaS</button>
+            <button class="filter-btn" onclick="filterPortfolio('ui-ux')">UI/UX</button>
+            <button class="filter-btn" onclick="filterPortfolio('ia')">IA & Apps</button>
+            <button class="filter-btn" onclick="filterPortfolio('autres')">Autres</button>
         </div>
 
         <div class="portfolio-grid">
-            <!-- Projet 1 avec bouton d'action et flèche masquée par défaut -->
             <div class="portfolio-item reveal" data-category="web">
                 <img class="portfolio-thumb" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80" alt="SaaS HR">
                 <div class="portfolio-info">
                     <span>SaaS</span>
                     <h4>Plateforme RH Intelligente</h4>
-                    <a href="#" class="btn-project">Voir le projet <i class="fas fa-arrow-left arrow-animated"></i></a>
                 </div>
             </div>
-            <!-- Projet 2 avec bouton d'action et flèche masquée par défaut -->
             <div class="portfolio-item reveal" data-category="ui-ux">
                 <img class="portfolio-thumb" src="https://images.unsplash.com/photo-1618788372246-79faff0c3742?auto=format&fit=crop&w=400&q=80" alt="App UI">
                 <div class="portfolio-info">
                     <span>UI/UX Design</span>
                     <h4>Design d'application Crypto</h4>
-                    <a href="#" class="btn-project">Voir le projet <i class="fas fa-arrow-left arrow-animated"></i></a>
                 </div>
             </div>
-            <!-- Projet 3 avec bouton d'action et flèche masquée par défaut -->
             <div class="portfolio-item reveal" data-category="ia">
                 <img class="portfolio-thumb" src="https://images.unsplash.com/photo-1680814920042-4f8115b8fb3b?auto=format&fit=crop&w=400&q=80" alt="Automatisation CRM">
                 <div class="portfolio-info">
                     <span>Automatisation IA</span>
                     <h4>Sync IA vers Hubspot CRM</h4>
-                    <a href="#" class="btn-project">Voir le projet <i class="fas fa-arrow-left arrow-animated"></i></a>
                 </div>
             </div>
-            <!-- Projet 4 avec bouton d'action et flèche masquée par défaut -->
             <div class="portfolio-item reveal" data-category="autres">
                 <img class="portfolio-thumb" src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=400&q=80" alt="Faire part mariage">
                 <div class="portfolio-info">
                     <span>Invitations</span>
                     <h4>Faire-part Mariage Premium Luxe</h4>
-                    <a href="#" class="btn-project">Voir le projet <i class="fas fa-arrow-left arrow-animated"></i></a>
                 </div>
             </div>
         </div>
@@ -221,10 +670,10 @@
             <!-- Formulaire de commande personnalisé -->
             <div class="order-box reveal">
                 <h3 style="font-size: 1.8rem; margin-bottom: 25px;" id="formTitle">Formuler votre besoin</h3>
-                <form id="orderForm">
+                <form id="orderForm" onsubmit="handleFormSubmit(event)">
                     <div class="form-group">
                         <label for="serviceSelect">Service Souhaité</label>
-                        <select id="serviceSelect">
+                        <select id="serviceSelect" onchange="updateFormTitle()">
                             <option value="general">Demande Générale</option>
                             <option value="allemand">Cours d'Allemand</option>
                             <option value="web">Création de Site Web</option>
@@ -236,12 +685,9 @@
                             <option value="ia">Automatisation IA</option>
                         </select>
                     </div>
-                    <!-- AJOUT : Conteneur pour Nom et Prénom sur une ligne unique sur PC -->
-                    <div class="form-row-desktop">
-                        <div class="form-group flex-1">
-                            <label for="clientName">Votre Nom Complet</label>
-                            <input type="text" id="clientName" required placeholder="Ex: Jean Dupont">
-                        </div>
+                    <div class="form-group">
+                        <label for="clientName">Votre Nom Complet</label>
+                        <input type="text" id="clientName" required placeholder="Ex: Jean Dupont">
                     </div>
                     <div class="form-group">
                         <label for="clientEmail">Adresse Email</label>
@@ -320,23 +766,88 @@
         <a href="https://wa.me/123456789" class="float-btn float-wa" target="_blank" title="Discuter sur WhatsApp"><i class="fab fa-whatsapp"></i></a>
     </div>
 
-    <!-- Pied de page mis à jour avec la Signature Officielle Dynamique et le Bloc RGPD -->
+    <!-- Pied de page -->
     <footer>
-        <!-- AJOUT : Bloc de conformité RGPD propre -->
-        <div class="rgpd-container" style="max-width: 800px; margin: 0 auto 25px auto; font-size: 0.85rem; opacity: 0.8; line-height: 1.5; text-align: center;">
-            <p>🔒 <strong>Respect de la vie privée (RGPD) :</strong> En soumettant une formule de besoin, vous acceptez que vos données soient sécurisées et exploitées de façon unique par nos équipes techniques internes pour l'élaboration de votre devis. Aucune revente commerciale.</p>
-        </div>
-        
-        <!-- AJOUT : Ta signature officielle dynamique -->
-        <div class="signature-block" style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 15px;">
-            <i class="fas fa-code" style="font-size: 1.2rem; color: #00ffcc;"></i>
-            <span style="letter-spacing: 1px; font-weight: 600;">Concepteur & Développeur : EMMANUEL CLARIUS</span>
-        </div>
-
         <p>&copy; 2026 WELT DER KOMPETENZEN. Tous droits réservés.</p>
     </footer>
 
-    <!-- Lien vers ton fichier JavaScript -->
-    <script src="script.js"></script>
+    <!-- --- CODE JAVASCRIPT --- -->
+    <script>
+        /* 1. Animation de défilement de l'image de fond (Effet Parallaxe fluide) */
+        window.addEventListener('scroll', () => {
+            const bg = document.getElementById('parallaxBg');
+            let offset = window.pageYOffset;
+            bg.style.transform = `translateY(${offset * 0.4}px)`; // Contrôle la vitesse du fond
+        });
+
+        /* 2. Système d'apparition dynamique des éléments au scroll (Reveal Effect) */
+        const reveals = document.querySelectorAll('.reveal');
+        
+        function checkReveal() {
+            const triggerBottom = window.innerHeight * 0.85;
+            reveals.forEach(reveal => {
+                const revealTop = reveal.getBoundingClientRect().top;
+                if(revealTop < triggerBottom) {
+                    reveal.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkReveal);
+        window.addEventListener('load', checkReveal); // Lancement au chargement de la page
+
+        /* 3. Logique de sélection dynamique depuis les boutons services */
+        function selectService(serviceValue) {
+            const selectElement = document.getElementById('serviceSelect');
+            selectElement.value = serviceValue;
+            updateFormTitle();
+            
+            // Scroll doux vers le formulaire
+            document.getElementById('commander').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateFormTitle() {
+            const selectElement = document.getElementById('serviceSelect');
+            const titleElement = document.getElementById('formTitle');
+            const selectedText = selectElement.options[selectElement.selectedIndex].text;
+            
+            if(selectElement.value === 'general') {
+                titleElement.innerText = "Formuler votre besoin";
+            } else {
+                titleElement.innerText = `Commander : ${selectedText}`;
+            }
+        }
+
+        /* 4. Filtrage dynamique du Portfolio */
+        function filterPortfolio(category) {
+            // Mettre à jour l'état actif des boutons
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filtrer les projets
+            const items = document.querySelectorAll('.portfolio-item');
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        /* 5. Traitement de la commande du formulaire */
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const service = document.getElementById('serviceSelect').value;
+            const name = document.getElementById('clientName').value;
+            const criteria = document.getElementById('criteria').value;
+
+            // Démonstration simple : simulation d'envoi ou redirection WhatsApp automatique
+            alert(`Merci ${name} ! Votre demande pour le service [${service}] a bien été prise en compte par Welt Der Kompetenzen.`);
+            document.getElementById('orderForm').reset();
+            updateFormTitle();
+        }
+    </script>
 </body>
 </html>
