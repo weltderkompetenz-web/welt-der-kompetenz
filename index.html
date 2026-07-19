@@ -3,851 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welt Der Kompetenzen - Hub de Services Professionnels</title>
-    <!-- FontAwesome pour les icônes -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="WELT DER KOMPETENZEN - Portfolio Premium & Immersif. Solutions sur mesure en Design UX/UI, Développement SaaS, Applications Mobiles, Cours d'Allemand et Automatisations IA.">
+    <title>WELT DER KOMPETENZEN | Agence Numérique & Formation Premium</title>
     
-    <style>
-        /* --- CORE CSS & VARIABLES --- */
-        :root {
-            --primary: #00f2fe;
-            --secondary: #4facfe;
-            --bg-dark: #0a0b10;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --text: #ffffff;
-            --text-muted: #a0aec0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text);
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Arrière-plan animé (Parallaxe + Image IA) */
-        .parallax-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 110vh;
-            background: linear-gradient(rgba(10, 11, 16, 0.85), rgba(10, 11, 16, 0.95)), 
-                        url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
-            background-size: cover;
-            z-index: -1;
-            transform: translateY(0);
-            transition: transform 0.1s linear;
-        }
-
-        /* --- UTILITIES & ANIMATIONS --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 28px;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: #000;
-            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.6);
-        }
-
-        .btn-whatsapp {
-            background: #25D366;
-            color: #fff;
-        }
-
-        .btn-whatsapp:hover {
-            background: #20ba5a;
-            transform: scale(1.05);
-        }
-
-        /* --- NAVBAR --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 5%;
-            background: rgba(10, 11, 16, 0.7);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--card-border);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        nav a {
-            color: var(--text);
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        /* --- HERO SECTION (ACCUEIL) --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 120px 5% 60px;
-            gap: 50px;
-        }
-
-        .hero-content {
-            flex: 1;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-
-        .hero-content h1 span {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-content p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-
-        .profile-img-wrapper {
-            position: relative;
-            width: 350px;
-            height: 350px;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            animation: morph 8s ease-in-out infinite alternate;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.3);
-        }
-
-        .profile-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        @keyframes morph {
-            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            50% { border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%; }
-            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-        }
-
-        /* --- SERVICES SECTION --- */
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-        }
-        .section-title span {
-            color: var(--primary);
-        }
-
-        .services {
-            padding: 80px 5%;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.1);
-        }
-
-        .service-img {
-            width: 100%;
-            height: 180px;
-            border-radius: 12px;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-
-        .service-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-        }
-
-        .service-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .service-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: auto;
-        }
-
-        .service-actions .btn {
-            padding: 10px 15px;
-            font-size: 0.85rem;
-            flex: 1;
-            justify-content: center;
-        }
-
-        /* --- PORTFOLIO (PROJETS REALISES) --- */
-        .portfolio {
-            padding: 80px 5%;
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        .portfolio-filters {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-
-        .filter-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: var(--text);
-            padding: 8px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background: var(--primary);
-            color: #000;
-            border-color: var(--primary);
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .portfolio-item {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 15px;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-        }
-
-        .portfolio-item.hidden {
-            display: none;
-        }
-
-        .portfolio-thumb {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .portfolio-info {
-            padding: 20px;
-        }
-
-        .portfolio-info span {
-            font-size: 0.75rem;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .portfolio-info h4 {
-            margin: 5px 0 10px;
-        }
-
-        /* --- SECTION COMMANDE & CONTACT --- */
-        .order-contact-container {
-            padding: 80px 5%;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 50px;
-        }
-
-        .order-box, .contact-box {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            padding: 40px;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--card-border);
-            border-radius: 8px;
-            color: white;
-            outline: none;
-            transition: border 0.3s;
-        }
-
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            border-color: var(--primary);
-        }
-
-        .contact-info-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .contact-info-item i {
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
-        /* --- COMMENTAIRES / TEMOIGNAGES --- */
-        .testimonials {
-            padding: 80px 5%;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .testimonial-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 25px;
-            border-radius: 15px;
-            position: relative;
-        }
-
-        .testimonial-card i.quote {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2rem;
-            color: rgba(0, 242, 254, 0.1);
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .user-info img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        /* --- FLOATING ACTIONS (CTA) --- */
-        .floating-actions {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            z-index: 999;
-        }
-
-        .float-btn {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            transition: transform 0.3s;
-        }
-
-        .float-btn:hover {
-            transform: scale(1.1) translateY(-5px);
-        }
-
-        .float-call { background: #007aff; }
-        .float-wa { background: #25D366; }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            border-top: 1px solid var(--card-border);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .hero { flex-direction: column-reverse; text-align: center; }
-            .order-contact-container { grid-template-columns: 1fr; }
-            .hero-content h1 { font-size: 2.5rem; }
-        }
-    </style>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Raleway:wght@300;400;600;700&family=Saira+Semi+Condensed:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="dark-theme">
 
-    <!-- Fond Image IA Parallaxe Animé -->
-    <div class="parallax-bg" id="parallaxBg"></div>
+    <!-- Toile pour les Particules Dynamiques -->
+    <canvas id="particleCanvas"></canvas>
 
-    <!-- Barre de Navigation -->
-    <header>
+    <!-- En-tête / Navigation -->
+    <header class="main-header">
         <div class="logo">WELT DER KOMPETENZEN</div>
-        <nav>
+        <nav class="nav-menu">
             <a href="#accueil">Accueil</a>
             <a href="#services">Services</a>
             <a href="#portfolio">Projets</a>
-            <a href="#commander">Commander</a>
+            <a href="#temoignages">Avis</a>
         </nav>
+        <button id="themeToggle" class="theme-btn" aria-label="Changer de thème">
+            <i class="fas fa-moon"></i>
+        </button>
     </header>
 
-    <!-- Section Accueil -->
-    <section class="hero" id="accueil">
-        <div class="hero-content reveal">
-            <h1>Bienvenue dans la <span>Welt Der Kompetenzen</span></h1>
-            <p>Nous fusionnons l'art du design UI/UX, l'excellence linguistique et la puissance du développement et de l'automatisation IA pour propulser votre entreprise vers l'avenir.</p>
-            <a href="#services" class="btn btn-primary">Découvrir nos solutions <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="hero-image reveal">
-            <div class="profile-img-wrapper">
-                <!-- METS TA PHOTO ICI -->
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80" alt="Votre Nom / Directeur Général">
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Services -->
-    <section class="services" id="services">
-        <h2 class="section-title reveal">Nos <span>Expertises</span></h2>
-        
-        <div class="services-grid">
-            <!-- Service 1 -->
-            <div class="service-card reveal">
-                <div>
-                    <img class="service-img" src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=500&q=80" alt="Cours d'allemand">
-                    <h3>Professeur d'Allemand</h3>
-                    <p>Cours personnalisés de niveau A1 à C2. Apprentissage accéléré axé sur la pratique pro.</p>
-                </div>
-                <div class="service-actions">
-                    <button class="btn btn-primary" onclick="selectService('allemand')">Commander</button>
-                    <a href="https://wa.me/123456789" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Pro</a>
-                </div>
-            </div>
-
-            <!-- Service 2 -->
-            <div class="service-card reveal">
-                <div>
-                    <img class="service-img" src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=500&q=80" alt="Création web">
-                    <h3>Création de Site Web</h3>
-                    <p>Des sites vitrines et e-commerce modernes, ultra-rapides et optimisés pour le SEO.</p>
-                </div>
-                <div class="service-actions">
-                    <button class="btn btn-primary" onclick="selectService('web')">Commander</button>
-                    <a href="https://wa.me/123456789" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Dev</a>
-                </div>
-            </div>
-
-            <!-- Service 3 -->
-            <div class="service-card reveal">
-                <div>
-                    <img class="service-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=500&q=80" alt="SaaS">
-                    <h3>Création de SaaS</h3>
-                    <p>Développement de logiciels par abonnement sur-mesure et scalables avec architectures cloud robustes.</p>
-                </div>
-                <div class="service-actions">
-                    <button class="btn btn-primary" onclick="selectService('saas')">Commander</button>
-                    <a href="https://wa.me/123456789" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Dev</a>
-                </div>
-            </div>
-
-            <!-- Service 4 -->
-            <div class="service-card reveal">
-                <div>
-                    <img class="service-img" src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=500&q=80" alt="UI UX">
-                    <h3>Design UI / UX</h3>
-                    <p>Prototypes haute fidélité et interfaces intuitives pensées pour maximiser votre taux de conversion.</p>
-                </div>
-                <div class="service-actions">
-                    <button class="btn btn-primary" onclick="selectService('ui-ux')">Commander</button>
-                    <a href="https://wa.me/123456789" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Designer</a>
-                </div>
-            </div>
-
-            <!-- Service 5 -->
-            <div class="service-card reveal">
-                <div>
-                    <img class="service-img" src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=500&q=80" alt="TikTok">
-                    <h3>Comptes TikTok Monétisés</h3>
-                    <p>Création, paramétrage et stratégies de croissance pour des comptes prêts pour la monétisation.</p>
-                </div>
-                <div class="service-actions">
-                    <button class="btn btn-primary" onclick="selectService('tiktok')">Commander</button>
-                    <a href="https://wa.me/123456789" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Expert</a>
-                </div>
-            </div>
-
-            <!-- Service 6 -->
-            <div class="service-card reveal">
-                <div>
-                    <img class="service-img" src="https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=500&q=80" alt="Faire part">
-                    <h3>Faire-part & Invitations</h3>
-                    <p>Designs graphiques d'exception imprimables et numériques pour tous vos événements marquants.</p>
-                </div>
-                <div class="service-actions">
-                    <button class="btn btn-primary" onclick="selectService('invitations')">Commander</button>
-                    <a href="https://wa.me/123456789" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Design</a>
-                </div>
-            </div>
-
-            <!-- Service 7 -->
-            <div class="service-card reveal">
-                <div>
-                    <img class="service-img" src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=500&q=80" alt="Applications">
-                    <h3>Création d'Applications</h3>
-                    <p>Développement d'applications mobiles performantes sous iOS et Android (natives ou hybrides).</p>
-                </div>
-                <div class="service-actions">
-                    <button class="btn btn-primary" onclick="selectService('apps')">Commander</button>
-                    <a href="https://wa.me/123456789" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Dev</a>
-                </div>
-            </div>
-
-            <!-- Service 8 -->
-            <div class="service-card reveal">
-                <div>
-                    <img class="service-img" src="https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=500&q=80" alt="IA">
-                    <h3>Automatisation IA</h3>
-                    <p>Intégration d'agents intelligents et automatisation de vos workflows d'entreprise répétitifs.</p>
-                </div>
-                <div class="service-actions">
-                    <button class="btn btn-primary" onclick="selectService('ia')">Commander</button>
-                    <a href="https://wa.me/123456789" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Expert IA</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Projets Réalisés (Portfolio Filtrable) -->
-    <section class="portfolio" id="portfolio">
-        <h2 class="section-title reveal">Nos Réalisations <span>Clients</span></h2>
-        
-        <div class="portfolio-filters reveal">
-            <button class="filter-btn active" onclick="filterPortfolio('all')">Tous</button>
-            <button class="filter-btn" onclick="filterPortfolio('web')">Web & SaaS</button>
-            <button class="filter-btn" onclick="filterPortfolio('ui-ux')">UI/UX</button>
-            <button class="filter-btn" onclick="filterPortfolio('ia')">IA & Apps</button>
-            <button class="filter-btn" onclick="filterPortfolio('autres')">Autres</button>
-        </div>
-
-        <div class="portfolio-grid">
-            <div class="portfolio-item reveal" data-category="web">
-                <img class="portfolio-thumb" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80" alt="SaaS HR">
-                <div class="portfolio-info">
-                    <span>SaaS</span>
-                    <h4>Plateforme RH Intelligente</h4>
-                </div>
-            </div>
-            <div class="portfolio-item reveal" data-category="ui-ux">
-                <img class="portfolio-thumb" src="https://images.unsplash.com/photo-1618788372246-79faff0c3742?auto=format&fit=crop&w=400&q=80" alt="App UI">
-                <div class="portfolio-info">
-                    <span>UI/UX Design</span>
-                    <h4>Design d'application Crypto</h4>
-                </div>
-            </div>
-            <div class="portfolio-item reveal" data-category="ia">
-                <img class="portfolio-thumb" src="https://images.unsplash.com/photo-1680814920042-4f8115b8fb3b?auto=format&fit=crop&w=400&q=80" alt="Automatisation CRM">
-                <div class="portfolio-info">
-                    <span>Automatisation IA</span>
-                    <h4>Sync IA vers Hubspot CRM</h4>
-                </div>
-            </div>
-            <div class="portfolio-item reveal" data-category="autres">
-                <img class="portfolio-thumb" src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=400&q=80" alt="Faire part mariage">
-                <div class="portfolio-info">
-                    <span>Invitations</span>
-                    <h4>Faire-part Mariage Premium Luxe</h4>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Commander & Formulaires / Contact -->
-    <section class="order-contact" id="commander">
-        <div class="order-contact-container">
+    <!-- SECTION 1 : ACCUEIL -->
+    <section id="accueil" class="hero-section">
+        <div class="parallax-bg" id="parallaxBg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-container">
+            <h1 class="kinetic-title" id="interactiveTitle">WELT DER KOMPETENZEN</h1>
+            <p class="hero-subtitle">L'univers des compétences numériques et linguistiques d'élite.</p>
             
-            <!-- Formulaire de commande personnalisé -->
-            <div class="order-box reveal">
-                <h3 style="font-size: 1.8rem; margin-bottom: 25px;" id="formTitle">Formuler votre besoin</h3>
-                <form id="orderForm" onsubmit="handleFormSubmit(event)">
+            <div class="founder-card">
+                <div class="founder-avatar">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Fondateur Emmanuel Clarius">
+                </div>
+                <div class="founder-info">
+                    <h3>Emmanuel Clarius</h3>
+                    <p>Développeur Principal & Concepteur Visionnaire</p>
+                </div>
+            </div>
+            
+            <a href="#services" class="cta-scroll">Découvrir Notre Univers <i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- SECTION 2 : LES SERVICES -->
+    <section id="services" class="services-section">
+        <div class="section-header">
+            <h2>Nos Services Premium</h2>
+            <p>Une expertise de pointe pour propulser vos ambitions globales.</p>
+        </div>
+        
+        <div class="services-grid" id="servicesGrid">
+            <!-- Injecté dynamiquement par JavaScript -->
+        </div>
+    </section>
+
+    <!-- SECTION 3 : PORTFOLIO -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="section-header">
+            <h2>Projets Réalisés & Succès Clients</h2>
+            <p>Aperçu concret des architectures et designs livrés à l'international.</p>
+        </div>
+        
+        <div class="portfolio-grid" id="portfolioGrid">
+            <!-- Injecté dynamiquement par JavaScript -->
+        </div>
+    </section>
+
+    <!-- SECTION 5 : TÉMOIGNAGES -->
+    <section id="temoignages" class="testimonials-section">
+        <div class="section-header">
+            <h2>Témoignages Clients Internationaux</h2>
+            <p>Ce qu'en disent nos partenaires en Europe, en Afrique et dans le reste du monde.</p>
+        </div>
+        <div class="testimonials-grid" id="testimonialsGrid">
+            <!-- Injecté dynamiquement par JavaScript -->
+        </div>
+    </section>
+
+    <!-- SECTION 4 : MODAL DE COMMANDE -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2 class="modal-title">Lancer Votre Projet Premium</h2>
+            <p class="modal-subtitle">Configurez vos besoins avant de procéder au règlement sécurisé.</p>
+            
+            <form id="orderForm" novalidate>
+                <input type="hidden" id="selectedServiceIndex" value="">
+                
+                <div class="form-group">
+                    <label for="clientName">Nom complet *</label>
+                    <input type="text" id="clientName" required placeholder="Ex: Jean Dupont">
+                </div>
+                
+                <div class="form-group">
+                    <label for="clientWhatsapp">Numéro WhatsApp (Avec code pays) *</label>
+                    <input type="tel" id="clientWhatsapp" required placeholder="Ex: +2250102030405 ou +33612345678">
+                </div>
+                
+                <div class="form-group">
+                    <label for="projectDesc">Cahier des charges ou Description du Projet *</label>
+                    <textarea id="projectDesc" rows="4" required placeholder="Décrivez précisément votre besoin..."></textarea>
+                </div>
+                
+                <div class="form-row">
                     <div class="form-group">
-                        <label for="serviceSelect">Service Souhaité</label>
-                        <select id="serviceSelect" onchange="updateFormTitle()">
-                            <option value="general">Demande Générale</option>
-                            <option value="allemand">Cours d'Allemand</option>
-                            <option value="web">Création de Site Web</option>
-                            <option value="saas">Création de SaaS</option>
-                            <option value="ui-ux">Design UI/UX</option>
-                            <option value="tiktok">Compte TikTok Monétisé</option>
-                            <option value="invitations">Faire-part & Invitations</option>
-                            <option value="apps">Création d'Application</option>
-                            <option value="ia">Automatisation IA</option>
+                        <label for="projectBudget">Fourchette Budgétaire ($ / € / CFA)</label>
+                        <input type="text" id="projectBudget" placeholder="Ex: 1500 € ou Budget ouvert">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="projectUrgency">Degré d'Urgence</label>
+                        <select id="projectUrgency">
+                            <option value="Normal">Normal</option>
+                            <option value="Pressé">Pressé (Délai court)</option>
+                            <option value="Urgent">Urgent (Priorité absolue)</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="clientName">Votre Nom Complet</label>
-                        <input type="text" id="clientName" required placeholder="Ex: Jean Dupont">
-                    </div>
-                    <div class="form-group">
-                        <label for="clientEmail">Adresse Email</label>
-                        <input type="email" id="clientEmail" required placeholder="Ex: contact@entreprise.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="criteria">Vos critères et préférences</label>
-                        <textarea id="criteria" rows="5" required placeholder="Décrivez en quelques mots les spécificités de votre projet..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Envoyer la demande</button>
-                </form>
-            </div>
+                </div>
 
-            <!-- Coordonnées de l'Entreprise -->
-            <div class="contact-box reveal">
-                <h3 style="font-size: 1.8rem; margin-bottom: 25px;">Nous contacter</h3>
-                <p style="color: var(--text-muted); margin-bottom: 30px; line-height: 1.6;">Une question sur l'un de nos pôles ? Notre équipe centrale ou nos développeurs dédiés sont à votre écoute immédiate.</p>
-                
-                <div class="contact-info-item">
-                    <i class="fas fa-building"></i>
-                    <div>
-                        <h4 style="font-size: 0.85rem; color: var(--text-muted);">ENTREPRISE</h4>
-                        <p>WELT DER KOMPETENZEN</p>
-                    </div>
-                </div>
-                <div class="contact-info-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <h4 style="font-size: 0.85rem; color: var(--text-muted);">EMAIL</h4>
-                        <p>contact@weltderkompetenzen.com</p>
-                    </div>
-                </div>
-                <div class="contact-info-item">
-                    <i class="fab fa-whatsapp"></i>
-                    <div>
-                        <h4 style="font-size: 0.85rem; color: var(--text-muted);">WHATSAPP CENTRAL</h4>
-                        <p>+123 456 7890</p>
-                    </div>
-                </div>
-            </div>
+                <button type="submit" class="submit-btn">Valider et Procéder au Paiement <i class="fas fa-credit-card"></i></button>
+            </form>
         </div>
-    </section>
-
-    <!-- Zone Commentaires / Témoignages Clients -->
-    <section class="testimonials">
-        <h2 class="section-title reveal">Avis de nos <span>Partenaires</span></h2>
-        <div class="testimonials-grid">
-            <div class="testimonial-card reveal">
-                <i class="fas fa-quote-right quote"></i>
-                <p>"L'automatisation IA mise en place sur notre CRM nous fait gagner 15 heures par semaine. Un travail d'une qualité UX irréprochable."</p>
-                <div class="user-info">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Client 1">
-                    <div>
-                        <h4>Marc A.</h4>
-                        <p style="font-size: 0.8rem; color: var(--text-muted);">Directeur Tech SoluInc</p>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card reveal">
-                <i class="fas fa-quote-right quote"></i>
-                <p>"Les cours d'allemand professionnel m'ont permis de décrocher mon poste à Francfort en seulement 4 mois d'accompagnement rigoureux !"</p>
-                <div class="user-info">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Client 2">
-                    <div>
-                        <h4>Amélie R.</h4>
-                        <p style="font-size: 0.8rem; color: var(--text-muted);">Ingénieure Systèmes</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Actions Clignotantes / Flottantes Utiles -->
-    <div class="floating-actions">
-        <a href="tel:+123456789" class="float-btn float-call" title="Nous appeler directement"><i class="fas fa-phone-alt"></i></a>
-        <a href="https://wa.me/123456789" class="float-btn float-wa" target="_blank" title="Discuter sur WhatsApp"><i class="fab fa-whatsapp"></i></a>
     </div>
 
-    <!-- Pied de page -->
-    <footer>
-        <p>&copy; 2026 WELT DER KOMPETENZEN. Tous droits réservés.</p>
+    <!-- NOTIFICATION SYSTEM SUPERIEURE -->
+    <div id="toastNotification" class="toast">
+        <i class="fas fa-sync-alt fa-spin"></i> <span id="toastMessage">Commande initiée avec succès. Redirection vers MoneyFusion...</span>
+    </div>
+
+    <!-- COMPOSANTS FLOTTANTS DE COMMUNICATION RAPIDE -->
+    <div class="floating-actions">
+        <a href="tel:0158255572" class="float-btn phone-float" aria-label="Appeler le secrétariat central">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="https://wa.me/0158255572" target="_blank" rel="noopener noreferrer" class="float-btn whatsapp-float" aria-label="Discuter sur WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- PIED DE PAGE & RÈGLEMENTATIONS -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h4>WELT DER KOMPETENZEN</h4>
+                <p><i class="fas fa-envelope"></i> weltderkompetenz@gmail.com</p>
+                <p><i class="fas fa-phone"></i> Numéro Central : 0158255572</p>
+            </div>
+            <div class="footer-designer">
+                <p>Concepteur & Développeur d'élite :</p>
+                <div class="designer-credit">
+                    <strong>EMMANUEL CLARIUS</strong>
+                </div>
+            </div>
+        </div>
+        <div class="footer-legal">
+            <p class="rgpd-text">
+                <i class="fas fa-shield-alt"></i> Respect des données personnelles (RGPD) — Les informations saisies au sein de ce portfolio sont uniquement et strictement utilisées pour l'établissement de la relation commerciale et le suivi du paiement. Aucun stockage malveillant n'est effectué.
+            </p>
+            <p class="copyright">&copy; 2026 WELT DER KOMPETENZEN. Tous droits réservés.</p>
+        </div>
     </footer>
 
-    <!-- --- CODE JAVASCRIPT --- -->
-    <script>
-        /* 1. Animation de défilement de l'image de fond (Effet Parallaxe fluide) */
-        window.addEventListener('scroll', () => {
-            const bg = document.getElementById('parallaxBg');
-            let offset = window.pageYOffset;
-            bg.style.transform = `translateY(${offset * 0.4}px)`; // Contrôle la vitesse du fond
-        });
-
-        /* 2. Système d'apparition dynamique des éléments au scroll (Reveal Effect) */
-        const reveals = document.querySelectorAll('.reveal');
-        
-        function checkReveal() {
-            const triggerBottom = window.innerHeight * 0.85;
-            reveals.forEach(reveal => {
-                const revealTop = reveal.getBoundingClientRect().top;
-                if(revealTop < triggerBottom) {
-                    reveal.classList.add('active');
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', checkReveal);
-        window.addEventListener('load', checkReveal); // Lancement au chargement de la page
-
-        /* 3. Logique de sélection dynamique depuis les boutons services */
-        function selectService(serviceValue) {
-            const selectElement = document.getElementById('serviceSelect');
-            selectElement.value = serviceValue;
-            updateFormTitle();
-            
-            // Scroll doux vers le formulaire
-            document.getElementById('commander').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function updateFormTitle() {
-            const selectElement = document.getElementById('serviceSelect');
-            const titleElement = document.getElementById('formTitle');
-            const selectedText = selectElement.options[selectElement.selectedIndex].text;
-            
-            if(selectElement.value === 'general') {
-                titleElement.innerText = "Formuler votre besoin";
-            } else {
-                titleElement.innerText = `Commander : ${selectedText}`;
-            }
-        }
-
-        /* 4. Filtrage dynamique du Portfolio */
-        function filterPortfolio(category) {
-            // Mettre à jour l'état actif des boutons
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            // Filtrer les projets
-            const items = document.querySelectorAll('.portfolio-item');
-            items.forEach(item => {
-                if (category === 'all' || item.getAttribute('data-category') === category) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
-        }
-
-        /* 5. Traitement de la commande du formulaire */
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            const service = document.getElementById('serviceSelect').value;
-            const name = document.getElementById('clientName').value;
-            const criteria = document.getElementById('criteria').value;
-
-            // Démonstration simple : simulation d'envoi ou redirection WhatsApp automatique
-            alert(`Merci ${name} ! Votre demande pour le service [${service}] a bien été prise en compte par Welt Der Kompetenzen.`);
-            document.getElementById('orderForm').reset();
-            updateFormTitle();
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
