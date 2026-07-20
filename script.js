@@ -15,15 +15,16 @@ const SERVICES_DATA = [
     { title: "Automatisation IA & CRM", phone: "+2290196966297", img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80", desc: "Interconnexion d'agents d'intelligence artificielle et optimisation des pipelines CRM pour éradiquer les tâches chronophages." }
 ];
 
+// --- 2. CONFIGURATION DU PORTFOLIO AVEC LES VRAIS LIENS MENTIONNÉS ---
 const PORTFOLIO_DATA = [
-    { title: "Plateforme Linguistique DeutschPro", serviceIdx: 0, img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80", link: "https://example.com/demo-deutsch", type: "web" },
-    { title: "E-Commerce Luxury & Headless Architecture", serviceIdx: 1, img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80", link: "https://example.com/demo-shop", type: "web" },
-    { title: "SaaS Enterprise Resource Planning Analytics", serviceIdx: 2, img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80", link: "https://example.com/demo-saas", type: "web" },
-    { title: "UI/UX Mobile Fintech App Redesign", serviceIdx: 3, img: "https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?auto=format&fit=crop&w=600&q=80", link: "https://example.com/demo-ui", type: "web" },
-    { title: "Réseau TikTok Media Booster Agency", serviceIdx: 4, img: "https://images.unsplash.com/photo-1611606063065-ee7946f0787a?auto=format&fit=crop&w=600&q=80", link: "https://example.com/demo-tiktok", type: "web" },
-    { title: "Faire-Part Numérique Prestige Royal Ébène", serviceIdx: 5, img: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80", link: "https://example.com/demo-invitation.pdf", type: "pdf" },
-    { title: "App Mobile Livraison Express & Géolocalisée", serviceIdx: 6, img: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=600&q=80", link: "https://example.com/demo-app", type: "web" },
-    { title: "Dashboard Automatisation IA & Workflow Hub", serviceIdx: 7, img: "https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?auto=format&fit=crop&w=600&q=80", link: "https://example.com/demo-crm-ai", type: "web" }
+    { title: "Plateforme Linguistique DeutschPro", serviceIdx: 0, img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80", link: "https://learngerman.dw.com/fr/apprendre-lallemand/s-47990985", type: "web" },
+    { title: "E-Commerce Luxury & Headless Architecture", serviceIdx: 1, img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80", link: "https://ctchaloko-sys.github.io/SITE-PERSONEL/", type: "web" },
+    { title: "SaaS Enterprise Resource Planning Analytics", serviceIdx: 2, img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80", link: "https://papayawhip-pony-937233.hostingersite.com/", type: "web" },
+    { title: "UI/UX Mobile Fintech App Redesign", serviceIdx: 3, img: "https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?auto=format&fit=crop&w=600&q=80", link: "https://ctchaloko-sys.github.io/SITE-PERSONEL/", type: "web" },
+    { title: "Réseau TikTok Media Booster Agency", serviceIdx: 4, img: "https://images.unsplash.com/photo-1611606063065-ee7946f0787a?auto=format&fit=crop&w=600&q=80", link: "https://www.tiktok.com/@weltderkompetenz?_r=1&_t=ZN-98BUoPtnfwU", type: "web" },
+    { title: "Faire-Part Numérique Prestige Royal Ébène", serviceIdx: 5, img: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80", link: "https://canva.link/naq1zmc4yi2a1ta", type: "web" },
+    { title: "App Mobile Livraison Express & Géolocalisée", serviceIdx: 6, img: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=600&q=80", link: "https://ctchaloko-sys.github.io/SITE-PERSONEL/", type: "web" },
+    { title: "Dashboard Automatisation IA & Workflow Hub", serviceIdx: 7, img: "https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?auto=format&fit=crop&w=600&q=80", link: "https://papayawhip-pony-937233.hostingersite.com/", type: "web" }
 ];
 
 const TESTIMONIALS_DATA = [
@@ -44,21 +45,23 @@ document.addEventListener("DOMContentLoaded", () => {
     initInteractions();
 });
 
-// --- 2. RENDER ENGINES ---
+// --- 3. RENDER ENGINES ---
 function initServices() {
     const grid = document.getElementById("servicesGrid");
     SERVICES_DATA.forEach((s, idx) => {
-        const safeTitle = sanitizeHTML(s.title);
-        const dynamicLetters = safeTitle.split('').map((char, i) => {
+        // Découpage lettre par lettre sans altérer l'apostrophe
+        const rawTitle = s.title;
+        const dynamicLetters = rawTitle.split('').map((char, i) => {
             if(char === ' ') return ' ';
-            return `<span class="letter-span" style="transition-delay: ${i * 0.02}s">${char}</span>`;
+            const displayChar = sanitizeHTML(char);
+            return `<span class="letter-span" style="transition-delay: ${i * 0.02}s">${displayChar}</span>`;
         }).join('');
 
         const card = document.createElement("div");
         card.className = "service-card";
         card.innerHTML = `
             <div class="service-img-wrapper">
-                <img src="${s.img}" alt="${safeTitle}" loading="lazy">
+                <img src="${s.img}" alt="${sanitizeHTML(s.title)}" loading="lazy">
             </div>
             <div class="service-content">
                 <h3 class="service-title">${dynamicLetters}</h3>
@@ -78,9 +81,6 @@ function initPortfolio() {
         card.className = "portfolio-card";
         
         let actionAttr = `href="${p.link}" target="_blank" rel="noopener noreferrer"`;
-        if (p.type === "pdf") {
-            actionAttr = `href="${p.link}" download="Demonstration_Welt_Der_Kompetenzen.pdf"`;
-        }
 
         card.innerHTML = `
             <div class="service-img-wrapper">
@@ -89,7 +89,7 @@ function initPortfolio() {
             <div class="portfolio-info">
                 <span class="portfolio-tag">${sanitizeHTML(service.title)}</span>
                 <h4 style="margin-bottom:1.5rem; font-family:var(--font-heading);">${sanitizeHTML(p.title)}</h4>
-                <a ${actionAttr} class="btn-premium">Voir le projet</a>
+                <a ${actionAttr} class="btn-premium">Voir le projet <i class="fas fa-external-link-alt" style="margin-left:8px; font-size:0.8rem;"></i></a>
             </div>
         `;
         grid.appendChild(card);
@@ -117,7 +117,7 @@ function initTestimonials() {
     });
 }
 
-// --- 3. SYSTÈME DE PARTICULES ---
+// --- 4. SYSTÈME DE PARTICULES ---
 let mouseX = 0, mouseY = 0;
 function initParticles() {
     const canvas = document.getElementById("particleCanvas");
@@ -181,7 +181,7 @@ function initParticles() {
     animate();
 }
 
-// --- 4. THEME CONTROLLER ---
+// --- 5. THEME CONTROLLER ---
 function initTheme() {
     const btn = document.getElementById("themeToggle");
     btn.addEventListener("click", () => {
@@ -195,7 +195,7 @@ function initTheme() {
     });
 }
 
-// --- 5. INTERACTIONS & MODAL ---
+// --- 6. INTERACTIONS & MODAL ---
 function initInteractions() {
     const parallaxBg = document.getElementById("parallaxBg");
     window.addEventListener("scroll", () => {
@@ -232,7 +232,7 @@ function closeOrderModal() {
     document.body.style.overflow = "auto";
 }
 
-// --- 6. ROUTAGE INTELLIGENT VERS LE WHATSAPP DU DÉVELOPPEUR ATTITRÉ ---
+// --- 7. ROUTAGE INTELLIGENT VERS LE WHATSAPP DU DÉVELOPPEUR ATTITRÉ ---
 function handleFormSubmit(e) {
     e.preventDefault();
     
@@ -248,11 +248,9 @@ function handleFormSubmit(e) {
         return;
     }
 
-    // Récupération des infos du service sélectionné et du bon numéro
     const targetedService = SERVICES_DATA[serviceIdx];
-    let developerPhone = targetedService.phone.replace(/\+/g, ''); // Nettoie le '+' pour l'API WhatsApp
+    let developerPhone = targetedService.phone.replace(/\+/g, '');
 
-    // Construction du message formaté pour WhatsApp
     let whatsappMessage = `*🔥 NOUVELLE COMMANDE PREMIUM — WELT DER KOMPETENZEN * \n\n`;
     whatsappMessage += `*📌 Service :* ${targetedService.title}\n`;
     whatsappMessage += `*👤 Client :* ${clientName}\n`;
@@ -261,15 +259,11 @@ function handleFormSubmit(e) {
     whatsappMessage += `*⚡ Urgence :* ${projectUrgency}\n\n`;
     whatsappMessage += `*📝 Cahier des charges :*\n${projectDesc}`;
 
-    // URL de l'API Universelle WhatsApp (fonctionne sur PC, Android et iOS)
     const whatsappUrl = `https://wa.me/${developerPhone}?text=${encodeURIComponent(whatsappMessage)}`;
 
     closeOrderModal();
-    
-    // Déclenchement du Toast haut de gamme
     showToast();
 
-    // Redirection instantanée vers le WhatsApp du développeur en charge
     setTimeout(() => {
         window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     }, 1200);
