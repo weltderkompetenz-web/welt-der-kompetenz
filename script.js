@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "apps": "22955172503",
         "ia": "22996966297",
         "general": "2290158255572"       // Numéro central par défaut
+        "turf elite": "https://wa.me/22795127922"       // Numéro central par défaut
     };
 
 
