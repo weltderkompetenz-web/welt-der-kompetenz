@@ -1,292 +1,443 @@
-/**
- * WELT DER KOMPETENZEN - Core Application Engine
- * Premium UX Architecture & Smart Multi-Developer WhatsApp Routing
- */
-
-// --- 1. CONFIGURATION DES SERVICES AVEC LEURS NUMÉROS DE TÉLÉPHONE DÉDIÉS ---
-const SERVICES_DATA = [
-    { title: "Professeur d'Allemand", phone: "+2290157812140", img: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80", desc: "Formations et cours linguistiques d'élite. Allemand professionnel, académique et perfectionnement sur mesure pour l'international." },
-    { title: "Création de Site Web", phone: "+2290155172503", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80", desc: "Développement d'écosystèmes vitrines et applicatifs haut de gamme. Optimisation SEO avancée, 4K UX design, fluidité maximale." },
-    { title: "Création de SaaS", phone: "+2290196966297", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80", desc: "Architecture Cloud souveraine et évolutive. Conception de plateformes logicielles complexes adaptées à la monétisation immédiate." },
-    { title: "Design UI/UX", phone: "+2290163151462", img: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=600&q=80", desc: "Maquettes haute fidélité, wireframing stratégique et design émotionnel axé sur la rétention utilisateur." },
-    { title: "Compte TikTok Monétisé", phone: "+2290158255572", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=600&q=80", desc: "Création de comptes clés en main éligibles aux programmes de récompenses. Configuration algorithmique optimale." },
-    { title: "Faire-part & Cartes Premium", phone: "+2290158255572", img: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=600&q=80", desc: "Créations graphiques et papeterie de prestige pour invitations corporatives ou événements privés haut de gamme." },
-    { title: "Application Mobile", phone: "+2290155172503", img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80", desc: "Applications natives et cross-platforme iOS/Android. Expérience immersive fluide, notifications et performances ultimes." },
-    { title: "Automatisation IA & CRM", phone: "+2290196966297", img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80", desc: "Interconnexion d'agents d'intelligence artificielle et optimisation des pipelines CRM pour éradiquer les tâches chronophages." }
-];
-
-// --- 2. CONFIGURATION DU PORTFOLIO AVEC LES VRAIS LIENS MENTIONNÉS ---
-const PORTFOLIO_DATA = [
-    { title: "Plateforme Linguistique DeutschPro", serviceIdx: 0, img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80", link: "https://learngerman.dw.com/fr/apprendre-lallemand/s-47990985", type: "web" },
-    { title: "E-Commerce Luxury & Headless Architecture", serviceIdx: 1, img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80", link: "https://ctchaloko-sys.github.io/SITE-PERSONEL/", type: "web" },
-    { title: "SaaS Enterprise Resource Planning Analytics", serviceIdx: 2, img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80", link: "https://papayawhip-pony-937233.hostingersite.com/", type: "web" },
-    { title: "UI/UX Mobile Fintech App Redesign", serviceIdx: 3, img: "https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?auto=format&fit=crop&w=600&q=80", link: "https://ctchaloko-sys.github.io/SITE-PERSONEL/", type: "web" },
-    { title: "Réseau TikTok Media Booster Agency", serviceIdx: 4, img: "https://images.unsplash.com/photo-1611606063065-ee7946f0787a?auto=format&fit=crop&w=600&q=80", link: "https://www.tiktok.com/@weltderkompetenz?_r=1&_t=ZN-98BUoPtnfwU", type: "web" },
-    { title: "Faire-Part Numérique Prestige Royal Ébène", serviceIdx: 5, img: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80", link: "https://canva.link/naq1zmc4yi2a1ta", type: "web" },
-    { title: "App Mobile Livraison Express & Géolocalisée", serviceIdx: 6, img: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=600&q=80", link: "https://ctchaloko-sys.github.io/SITE-PERSONEL/", type: "web" },
-    { title: "Dashboard Automatisation IA & Workflow Hub", serviceIdx: 7, img: "https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?auto=format&fit=crop&w=600&q=80", link: "https://papayawhip-pony-937233.hostingersite.com/", type: "web" }
-];
-
-const TESTIMONIALS_DATA = [
-    { name: "Koffi Mensah", country: "Côte d'Ivoire", flag: "🇨🇮", stars: 5, text: "Le SaaS livré a transformé notre logistique à Abidjan. Chapeau bas à l'équipe." },
-    { name: "Awa Diop", country: "Sénégal", flag: "🇸🇳", stars: 5, text: "L'interface UI/UX de notre application mobile fait l'unanimité auprès de nos clients." },
-    { name: "Serge Houndo", country: "Bénin", flag: "🇧🇯", stars: 5, text: "L'automatisation de notre CRM par l'IA nous fait économiser des dizaines d'heures par semaine." },
-    { name: "Marc Mbarga", country: "Cameroun", flag: "🇨🇲", stars: 5, text: "Le site vitrine premium conçu pour notre cabinet est simplement spectaculaire." },
-    { name: "Inès Bongo", country: "Gabon", flag: "🇬🇦", stars: 5, text: "Expertise, réactivité et professionnalisme irréprochable tout au long du projet." },
-    { name: "Pierre Dubois", country: "France", flag: "🇫🇷", stars: 5, text: "Design 4K UX d'une finesse rare. Les transitions sont fluides, le code est d'une propreté exemplaire." }
-];
-
-document.addEventListener("DOMContentLoaded", () => {
-    initServices();
-    initPortfolio();
-    initTestimonials();
-    initParticles();
-    initTheme();
-    initInteractions();
-});
-
-// --- 3. RENDER ENGINES ---
-function initServices() {
-    const grid = document.getElementById("servicesGrid");
-    SERVICES_DATA.forEach((s, idx) => {
-        // Découpage lettre par lettre sans altérer l'apostrophe
-        const rawTitle = s.title;
-        const dynamicLetters = rawTitle.split('').map((char, i) => {
-            if(char === ' ') return ' ';
-            const displayChar = sanitizeHTML(char);
-            return `<span class="letter-span" style="transition-delay: ${i * 0.02}s">${displayChar}</span>`;
-        }).join('');
-
-        const card = document.createElement("div");
-        card.className = "service-card";
-        card.innerHTML = `
-            <div class="service-img-wrapper">
-                <img src="${s.img}" alt="${sanitizeHTML(s.title)}" loading="lazy">
-            </div>
-            <div class="service-content">
-                <h3 class="service-title">${dynamicLetters}</h3>
-                <p class="service-desc">${sanitizeHTML(s.desc)}</p>
-                <button class="btn-premium" onclick="openOrderModal(${idx})">Commander ce projet <i class="fas fa-arrow-right" style="margin-left:8px;"></i></button>
-            </div>
-        `;
-        grid.appendChild(card);
-    });
+/* --- CONFIGURATION DU DARK ET LIGHT MODE --- */
+.dark-theme {
+    --primary: #00f2fe;
+    --secondary: #4facfe;
+    --bg-dark: #07080c;
+    --card-bg: rgba(255, 255, 255, 0.02);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text: #ffffff;
+    --text-muted: #a0aec0;
+    --shadow-glow: rgba(0, 242, 254, 0.4);
+    --bg-overlay: rgba(7, 8, 12, 0.88);
 }
 
-function initPortfolio() {
-    const grid = document.getElementById("portfolioGrid");
-    PORTFOLIO_DATA.forEach(p => {
-        const service = SERVICES_DATA[p.serviceIdx];
-        const card = document.createElement("div");
-        card.className = "portfolio-card";
-        
-        let actionAttr = `href="${p.link}" target="_blank" rel="noopener noreferrer"`;
-
-        card.innerHTML = `
-            <div class="service-img-wrapper">
-                <img src="${p.img}" alt="${sanitizeHTML(p.title)}" loading="lazy">
-            </div>
-            <div class="portfolio-info">
-                <span class="portfolio-tag">${sanitizeHTML(service.title)}</span>
-                <h4 style="margin-bottom:1.5rem; font-family:var(--font-heading);">${sanitizeHTML(p.title)}</h4>
-                <a ${actionAttr} class="btn-premium">Voir le projet <i class="fas fa-external-link-alt" style="margin-left:8px; font-size:0.8rem;"></i></a>
-            </div>
-        `;
-        grid.appendChild(card);
-    });
+.light-theme {
+    --primary: #0076ff;
+    --secondary: #00c6ff;
+    --bg-dark: #f4f6f9;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --card-border: rgba(0, 0, 0, 0.08);
+    --text: #1a202c;
+    --text-muted: #4a5568;
+    --shadow-glow: rgba(0, 118, 255, 0.2);
+    --bg-overlay: rgba(244, 246, 249, 0.9);
 }
 
-function initTestimonials() {
-    const grid = document.getElementById("testimonialsGrid");
-    TESTIMONIALS_DATA.forEach(t => {
-        const card = document.createElement("div");
-        card.className = "testimonial-card";
-        const starsHtml = '<i class="fas fa-star"></i>'.repeat(t.stars);
-        card.innerHTML = `
-            <div class="client-meta">
-                <span class="flag-icon">${t.flag}</span>
-                <div>
-                    <div class="client-name">${sanitizeHTML(t.name)}</div>
-                    <small style="color:var(--text-muted);">${sanitizeHTML(t.country)}</small>
-                </div>
-            </div>
-            <div class="stars">${starsHtml}</div>
-            <p style="font-style:italic; font-size:0.95rem; line-height:1.6; color:var(--text-muted);">"${sanitizeHTML(t.text)}"</p>
-        `;
-        grid.appendChild(card);
-    });
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
 }
 
-// --- 4. SYSTÈME DE PARTICULES ---
-let mouseX = 0, mouseY = 0;
-function initParticles() {
-    const canvas = document.getElementById("particleCanvas");
-    const ctx = canvas.getContext("2d");
-    let particlesArray = [];
+body {
+    background-color: var(--bg-dark);
+    color: var(--text);
+    overflow-x: hidden;
+    position: relative;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
 
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+/* Fond Numérique Couvrant Toute la Page */
+.parallax-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), 
+                url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+}
+
+/* --- LOGIQUE D'APPARITION (REVEAL) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- ACTIONS FLUIDES ET UTILS --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #fff;
+    box-shadow: 0 4px 15px var(--shadow-glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 22px var(--shadow-glow);
+}
+
+.btn-whatsapp {
+    background: #25D366;
+    color: #fff;
+}
+
+.btn-whatsapp:hover {
+    background: #1ebe57;
+    transform: scale(1.03);
+}
+
+/* --- HEADER / NAVBAR & INTERRUPTEUR DE THÈME --- */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 5%;
+    background: rgba(var(--bg-dark), 0.7);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--primary);
+}
+
+.theme-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+/* --- SECTION HERO --- */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 140px 5% 60px;
+    gap: 40px;
+}
+
+.hero-content { flex: 1.2; }
+.hero-content h1 {
+    font-size: 3.2rem;
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+.hero-content h1 span {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero-content p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.hero-image {
+    flex: 0.8;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-img-wrapper {
+    width: 320px;
+    height: 320px;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    animation: morphing 9s ease-in-out infinite alternate;
+    overflow: hidden;
+    box-shadow: 0 10px 30px var(--shadow-glow);
+}
+
+.profile-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes morphing {
+    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    50% { border-radius: 65% 35% 60% 40% / 45% 55% 45% 55%; }
+    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+}
+
+/* --- GRID SERVICES --- */
+.services { padding: 80px 5%; }
+.section-title { text-align: center; font-size: 2.3rem; margin-bottom: 45px; }
+.section-title span { color: var(--primary); }
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.service-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 22px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary);
+}
+
+.service-img {
+    width: 100%;
+    height: 160px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.service-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+.service-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin-bottom: 18px; }
+.service-actions { display: flex; gap: 8px; margin-top: auto; }
+.service-actions .btn { padding: 10px; font-size: 0.85rem; flex: 1; justify-content: center; }
+
+/* --- PORTFOLIO PROJETS --- */
+.portfolio { padding: 80px 5%; background: rgba(0,0,0,0.1); }
+.portfolio-filters { display: flex; justify-content: center; gap: 8px; margin-bottom: 35px; flex-wrap: wrap; }
+.filter-btn {
+    background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text);
+    padding: 7px 16px; border-radius: 20px; cursor: pointer; transition: all 0.3s;
+}
+.filter-btn.active, .filter-btn:hover { background: var(--primary); color: #000; border-color: var(--primary); }
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+.portfolio-item {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: 14px; overflow: hidden; transition: all 0.3s ease;
+}
+.portfolio-item.hidden { display: none; }
+.portfolio-thumb { width: 100%; height: 180px; object-fit: cover; }
+.portfolio-info { padding: 18px; }
+.portfolio-info span { font-size: 0.75rem; color: var(--primary); text-transform: uppercase; }
+.portfolio-info h4 { margin: 5px 0 15px; font-size: 1.1rem; }
+
+.project-link-btn {
+    display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.06);
+    color: var(--text); text-decoration: none; padding: 6px 14px; border-radius: 6px;
+    font-size: 0.82rem; border: 1px solid var(--card-border); transition: all 0.3s;
+}
+.project-link-btn:hover { background: var(--primary); color: #000; }
+.badge-tech { font-size: 0.75rem; color: var(--text-muted); display: block; font-style: italic; }
+
+/* --- FORMULAIRE & GRID CONTACT --- */
+.order-contact-container { padding: 40px 5%; display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 40px; }
+.order-box, .contact-box { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; padding: 35px; }
+
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; margin-bottom: 6px; font-size: 0.85rem; color: var(--text-muted); }
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 11px 14px; background: rgba(255,255,255,0.03);
+    border: 1px solid var(--card-border); border-radius: 8px; color: var(--text); outline: none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary); }
+
+.submit-ux-btn {
+    width: 100%; justify-content: center; border-radius: 10px; font-size: 1rem;
+    padding: 14px; position: relative; overflow: hidden;
+}
+.submit-ux-btn::after {
+    content: ''; position: absolute; top: -50%; left: -60%; width: 30%; height: 200%;
+    background: rgba(255,255,255,0.25); transform: rotate(25deg);
+    animation: shineEffect 4s infinite linear;
+}
+@keyframes shineEffect {
+    0% { left: -60%; }
+    15% { left: 140%; }
+    100% { left: 140%; }
+}
+
+.rgpd-notice { font-size: 0.72rem; color: var(--text-muted); margin-top: 15px; line-height: 1.4; }
+.contact-info-item { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.contact-info-item i { font-size: 1.3rem; color: var(--primary); }
+
+/* --- TEMOIGNAGES ET FILTRES GÉO --- */
+.testimonials { padding: 80px 5%; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.testimonial-card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    padding: 20px; border-radius: 12px; position: relative; display: flex;
+    flex-direction: column; justify-content: space-between;
+}
+.geo-tag { font-size: 0.75rem; color: var(--primary); font-weight: 600; margin-bottom: 10px; display: block; }
+.lang-text { font-style: italic; }
+.testimonial-card h5 { margin-top: 15px; font-size: 0.9rem; text-align: right; color: var(--text-muted); }
+
+/* --- MODAL POPUP SYSTEM --- */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
+    z-index: 9999; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+}
+.modal-overlay.active { opacity: 1; pointer-events: auto; }
+.modal-box {
+    background: var(--bg-dark); border: 1px solid var(--primary);
+    padding: 35px; border-radius: 16px; text-align: center; max-width: 450px; width: 90%;
+    box-shadow: 0 0 30px var(--shadow-glow); transform: scale(0.8); transition: transform 0.3s ease;
+}
+.modal-overlay.active .modal-box { transform: scale(1); }
+.modal-icon { font-size: 3.5rem; color: #25D366; margin-bottom: 15px; }
+.modal-box h4 { font-size: 1.4rem; margin-bottom: 10px; }
+.modal-box p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; }
+
+/* --- COMPOSANTS FLOTTANTS --- */
+.floating-actions { position: fixed; bottom: 25px; right: 25px; display: flex; flex-direction: column; gap: 10px; z-index: 999; }
+.float-btn {
+    width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 1.3rem; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.3s;
+}
+.float-btn:hover { transform: scale(1.1) translateY(-3px); }
+.float-call { background: #007aff; }
+.float-wa { background: #25D366; }
+
+/* --- FOOTER & SIGNATURE --- */
+footer { padding: 40px 5% 20px; border-top: 1px solid var(--card-border); background: rgba(0,0,0,0.15); }
+.footer-signature { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 25px; }
+.dev-avatar { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
+.copyright { text-align: center; font-size: 0.8rem; color: var(--text-muted); }
+
+/* RESPONSIVE */
+@media (max-width: 968px) {
+    .hero { flex-direction: column-reverse; text-align: center; padding-top: 110px; }
+    .order-contact-container { grid-template-columns: 1fr; }
+    .form-row-2 { grid-template-columns: 1fr; gap: 0; }
+    .hero-content h1 { font-size: 2.3rem; }
+}
+
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 110;
+}
+.hamburger span {
+    width: 100%;
+    height: 2px;
+    background-color: var(--text);
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .hamburger { display: flex; }
+    header nav { display: none; }
+}
+
+.btn-project {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: opacity 0.3s ease;
+}
+.btn-project:hover { opacity: 0.8; }
+.arrow-animated {
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+.portfolio-item:hover .arrow-animated {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@media (min-width: 1024px) {
+    .form-row-desktop {
+        display: flex;
+        gap: 15px;
+        width: 100%;
     }
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-    window.addEventListener("mousemove", (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 1;
-            this.speedX = Math.random() * 0.4 - 0.2;
-            this.speedY = Math.random() * 0.4 - 0.2;
-        }
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-
-            if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
-            if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
-
-            let dx = mouseX - this.x;
-            let dy = mouseY - this.y;
-            let distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance < 120) {
-                this.x -= dx * 0.02;
-                this.y -= dy * 0.02;
-            }
-        }
-        draw() {
-            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#00ffcc';
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-
-    for (let i = 0; i < 75; i++) {
-        particlesArray.push(new Particle());
-    }
-
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particlesArray.forEach(p => {
-            p.update();
-            p.draw();
-        });
-        requestAnimationFrame(animate);
-    }
-    animate();
+    .flex-1 { flex: 1; }
 }
 
-// --- 5. THEME CONTROLLER ---
-function initTheme() {
-    const btn = document.getElementById("themeToggle");
-    btn.addEventListener("click", () => {
-        if (document.body.classList.contains("dark-theme")) {
-            document.body.classList.replace("dark-theme", "light-theme");
-            btn.innerHTML = `<i class="fas fa-sun"></i>`;
-        } else {
-            document.body.classList.replace("light-theme", "dark-theme");
-            btn.innerHTML = `<i class="fas fa-moon"></i>`;
-        }
-    });
+.rgpd-container {
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 15px;
 }
+.rgpd-container strong { color: var(--text); }
 
-// --- 6. INTERACTIONS & MODAL ---
-function initInteractions() {
-    const parallaxBg = document.getElementById("parallaxBg");
-    window.addEventListener("scroll", () => {
-        let offset = window.pageYOffset;
-        parallaxBg.style.transform = `translate3d(0, ${offset * 0.4}px, 0)`;
-    });
-
-    const title = document.getElementById("interactiveTitle");
-    title.addEventListener("mousemove", (e) => {
-        const rect = title.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        title.style.backgroundPosition = `${x}% ${y}%`;
-    });
-
-    document.getElementById("closeModal").addEventListener("click", closeOrderModal);
-    window.addEventListener("click", (e) => {
-        const modal = document.getElementById("orderModal");
-        if(e.target === modal) closeOrderModal();
-    });
-
-    const form = document.getElementById("orderForm");
-    form.addEventListener("submit", handleFormSubmit);
-}
-
-window.openOrderModal = function(serviceIndex) {
-    document.getElementById("selectedServiceIndex").value = serviceIndex;
-    document.getElementById("orderModal").classList.add("active");
-    document.body.style.overflow = "hidden";
-};
-
-function closeOrderModal() {
-    document.getElementById("orderModal").classList.remove("active");
-    document.body.style.overflow = "auto";
-}
-
-// --- 7. ROUTAGE INTELLIGENT VERS LE WHATSAPP DU DÉVELOPPEUR ATTITRÉ ---
-function handleFormSubmit(e) {
-    e.preventDefault();
-    
-    const clientName = document.getElementById("clientName").value.trim();
-    const clientWhatsapp = document.getElementById("clientWhatsapp").value.trim();
-    const projectDesc = document.getElementById("projectDesc").value.trim();
-    const projectBudget = document.getElementById("projectBudget").value.trim() || "Non spécifié";
-    const projectUrgency = document.getElementById("projectUrgency").value;
-    const serviceIdx = document.getElementById("selectedServiceIndex").value;
-
-    if (!clientName || !clientWhatsapp || !projectDesc) {
-        alert("Veuillez remplir correctement tous les champs obligatoires (*).");
-        return;
-    }
-
-    const targetedService = SERVICES_DATA[serviceIdx];
-    let developerPhone = targetedService.phone.replace(/\+/g, '');
-
-    let whatsappMessage = `*🔥 NOUVELLE COMMANDE PREMIUM — WELT DER KOMPETENZEN * \n\n`;
-    whatsappMessage += `*📌 Service :* ${targetedService.title}\n`;
-    whatsappMessage += `*👤 Client :* ${clientName}\n`;
-    whatsappMessage += `*💬 WhatsApp Client :* ${clientWhatsapp}\n`;
-    whatsappMessage += `*💰 Budget :* ${projectBudget}\n`;
-    whatsappMessage += `*⚡ Urgence :* ${projectUrgency}\n\n`;
-    whatsappMessage += `*📝 Cahier des charges :*\n${projectDesc}`;
-
-    const whatsappUrl = `https://wa.me/${developerPhone}?text=${encodeURIComponent(whatsappMessage)}`;
-
-    closeOrderModal();
-    showToast();
-
-    setTimeout(() => {
-        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-    }, 1200);
-}
-
-function showToast() {
-    const toast = document.getElementById("toastNotification");
-    toast.classList.add("show");
-    setTimeout(() => {
-        toast.classList.remove("show");
-    }, 4500);
-}
-
-function sanitizeHTML(str) {
-    if (!str) return '';
-    return str.replace(/[&<>"']/g, function(match) {
-        const escapeMap = {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#x27;'
-        };
-        return escapeMap[match];
-    });
+.signature-block {
+    color: var(--text);
+    font-size: 0.95rem;
+    text-shadow: 0 0 8px rgba(0, 255, 204, 0.2);
 }
